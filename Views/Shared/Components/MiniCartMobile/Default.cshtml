@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ComputerDeviceShopping.Models.CartItem>
+<div class="mini_cart_wrapper">
+    <a href="javascript:void(0)"><img src="/images/plsite/shopping-bag.png" alt=""></a>
+    <span class="cart_quantity">@Model.Count()</span>
+    <div class="mini_cart">
+        @foreach (var item in Model)
+        {
+            <div class="cart_item">
+                <div class="cart_img">
+                    <a href="@Url.Action("Detail","Shopping",new{id = @item.ProductId})"><img src="@item.ImageProduct" alt=""></a>
+                </div>
+                <div class="cart_info">
+                    <a href="@Url.Action("Detail","Shopping",new{id = @item.ProductId})">@item.ProductName</a>
+                    <p>Qty: @item.Quantity X <span> @item.Price </span></p>
+                </div>
+                <div class="cart_remove">
+                    <button style="border:none; background-color:#fff;" onclick="DeleteProductFromCart(@item.ProductId)"><i class="ion-android-close"></i></button>
+                </div>
+            </div>
+        }
+        <div class="mini_cart_table">
+            <div class="cart_total">
+                <span>Thành tiền:</span>
+                <span class="price">@Model.Sum(d => d.Total)</span>
+            </div>
+            <div class="cart_total mt-10">
+                <span>Tổng:</span>
+                <span class="price">@Model.Sum(d => d.Total)</span>
+            </div>
+        </div>
+
+        <div class="mini_cart_footer">
+            <div class="cart_button">
+                <a href="@Url.Action("Index","Cart")">Giỏ hàng</a>
+            </div>
+            <div class="cart_button">
+                <a href="@Url.Action("Index","Checkout")">Thanh toán</a>
+            </div>
+        </div>
+    </div>
+</div>

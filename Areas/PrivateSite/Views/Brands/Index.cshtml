@@ -1,0 +1,154 @@
+﻿@using ComputerDeviceShopping.Models;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
+    var brands = ViewData["Brands"] as List<Brand>;
+    string notification = ViewBag.updateItem;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h5 class="card-title fw-600 mb-4">Danh sách thể loại</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            @using (Html.BeginForm("Index", "Brands", FormMethod.Post))
+                            {
+                                <div class="searchForm">
+                                    <input class="form-control" name="name" placeholder="Tìm kiếm ..." id="searchCountry" />
+                                    <button type="submit" class="btn btn-default"><i class="ti ti-search"></i></button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-post text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">ID thương hiệu</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Tên thương hiệu</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Lệnh</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in brands)
+                                {
+                                    <tr>
+                                        <td><h6 class="fw-600 mb-0">@item.BrandId</h6></td>
+                                        <td><h6 class="fw-600 mb-1">@item.BrandName</h6></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" onclick='Update(@item.BrandId)'>Sửa</button>
+                                            <button class="btn btn-danger" onclick='Delete(@item.BrandId,"brands")'>Xóa</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-tools p-5 pt-0 pb-0 m-auto" id="pagination">
+                    @{
+                        int prevPage = ViewBag.Page - 1;
+                        if (prevPage <= 0)
+                        {
+                            prevPage = 1;
+                        }
+                        int nextPage = ViewBag.Page + 1;
+                        if (nextPage > ViewBag.NoOfPages)
+                        {
+                            nextPage = ViewBag.NoOfPages;
+                        }
+                    }
+                    @if (brands.Count > 0)
+                    {
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Index","Brands",new {page=prevPage})">&laquo;</a></li>
+                            @for (int i = ViewBag.DisplayPage; i < ViewBag.NoOfPages; i++)
+                            {
+                                if (i + 1 == ViewBag.Page)
+                                {
+                                    <li class="page-item"><a href="@Url.Action("Index","Brands",new {page = i+1 })" class="active page-link">@(i + 1)</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a href="@Url.Action("Index","Brands",new {page = i+1 })" class="page-link">@(i + 1)</a></li>
+                                }
+                            }
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Index","Brands",new {page=nextPage})">&raquo;</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <h1 class="text-center">Thương hiệu này hiện tại không có</h1>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold mb-4">Thương hiệu</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="" style="color:green;">@notification</h3>
+                            @using (Html.BeginForm("Insert", "Brands", FormMethod.Post, new { @id = "id_formff" }))
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label">Id thương hiệu</label>
+                                    <input type="text" class="form-control"  id="brandId1" disabled />
+                                    <input type="hidden" name="BrandId" id="brandId"/>
+                                    <label class="form-label">Tên thương hiệu</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên thương hiệu" name="BrandName" id="brandName" required />
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                                <button type="reset" class="btn btn-secondary mt-2">Reset</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Update(id) {
+        fetch(`/api/brands/update/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('brandName').value = data.data.brandName;
+                    document.getElementById('brandId').value = data.data.brandId;
+                    document.getElementById('brandId1').value = data.data.brandId;
+                    
+                } else {
+                    alert('Update failed');
+                }
+            })
+            .catch(error => {
+                alert("Error");
+            });
+    }
+</script>
+
+

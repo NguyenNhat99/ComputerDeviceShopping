@@ -1,0 +1,97 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.ViewModel.AccountVM
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li>Đăng ký tài khoản</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<section class="account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="account-contents" style="background: url('assets/img/about/about1.jpg'); background-size: cover;">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-thumb">
+                                <h2>Đăng ký</h2>
+                                <p>Khi đăng ký bạn có thể nhận được nhiều ưu đãi và chính sách thành viên cực kỳ hấp dẫn</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="account-content">
+                                    <div class="single-acc-field">
+                                        <label for="username">Tên đăng nhập</label>
+                                        @Html.TextBoxFor(item => item.username, new { placeholder = "Nhập tên đăng nhập...", required="required"})
+                                        @Html.ValidationMessageFor(item => item.username)
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="password">Mật khẩu</label>
+                                        @Html.PasswordFor(item => item.password, new { placeholder = "Nhập mật khẩu...", required = "required" })
+                                        @Html.ValidationMessageFor(item => item.password)
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="email">Email</label>
+                                        @Html.TextBoxFor(item => item.email, new { placeholder = "Nhập email...", type = "email", required = "required" })
+                                        @Html.ValidationMessageFor(item => item.email)
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="numberPhone">Số điện thoại</label>
+                                        @Html.TextBoxFor(item => item.phone, new { placeholder = "Nhập số điện thoại...", required = "required" })
+                                        @Html.ValidationMessageFor(item => item.phone)
+                                    </div>
+                                    <div class="single-acc-field row">
+                                        <div class="col-6">
+                                            <div class="single-acc-field">
+                                                <label for="lastName">Họ </label>
+                                                @Html.TextBoxFor(item => item.lastName, new { placeholder = "Nhập họ...", required = "required" })
+                                                @Html.ValidationMessageFor(item => item.lastName)
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="single-acc-field">
+                                                <label for="firstName">Tên</label>
+                                                @Html.TextBoxFor(item => item.firstName, new { placeholder = "Nhập tên...", required = "required" })
+                                                @Html.ValidationMessageFor(item => item.firstName)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="numberPhone">Địa chỉ</label>
+                                        @Html.TextBoxFor(item => item.address, new { placeholder = "Nhập địa chỉ của bạn..."})
+                                        @Html.ValidationMessageFor(item => item.address)
+                                    </div>
+                                   @*  <div class="single-acc-field boxes">
+                                        <input type="checkbox" id="checkbox">
+                                        <label for="checkbox">Tôi đồng ý với các <a href="#">điều khoản</a></label>
+                                    </div> *@
+                                    <div class="single-acc-field">
+                                        <button type="submit">Đăng ký</button>
+                                    </div>
+                                    <a href="@Url.Action("Login","Account")">Đã có tài khoản? Đăng nhập</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

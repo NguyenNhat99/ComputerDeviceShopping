@@ -1,0 +1,116 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Customer
+@{
+    ViewData["Title"] = "CustomerDetail";
+    Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
+    var orderList = ViewData["OrderList"] as List<Order>;
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6" style="margin-top:90px;">
+                    <h1>Chi tiết khách hàng </h1>
+                    <h5>Mã khách hàng: #@Model.CustomerId</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-post text-nowrap mb-0 align-middle">
+                                    <thead class="text-dark fs-4">
+                                        <tr>
+                                            <th class="">
+                                                <h6 class="fw-600 mb-0">Mã đơn hàng</h6>
+                                            </th>
+                                            <th class="">
+                                                <h6 class="fw-600 mb-0">Trị giá</h6>
+                                            </th>
+                                            <th class="">
+                                                <h6 class="fw-600 mb-0">Ngày tạo</h6>
+                                            </th>
+                                            <th class="">
+                                                <h6 class="fw-600 mb-0">Trạng thái</h6>
+                                            </th>  <th class="">
+                                                <h6 class="fw-600 mb-0">Lệnh</h6>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach(var order in orderList)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <h6 class="fw-600 mb-0">@order.OrderId</h6>
+                                                </td>
+                                                <td><h6 class="fw-600 mb-1">@order.TotalPrice</h6></td>
+
+                                                <td><h6 class="fw-600 mb-1">@order.CreateAt</h6></td>
+                                                <td><h6 class="fw-600 mb-1">@(order.StatusId == 2 ? "Đang vận chuyên" : order.StatusId == 3 ? "Chờ xác nhận" : order.StatusId == 4 ? "Đã hủy" : order.StatusId == 5 ? "Thành công" : "Thất bại")</h6></td>
+                                                <td>
+                                                    <a href="@Url.Action("Detail","Orders",new{id =order.OrderId})" class="btn btn-primary">Chi tiết</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                      
+                                       @*  @foreach (var detail in detailList)
+                                        {
+                                            foreach (var pro in productList)
+                                            {
+                                                if (detail.ProductId.Equals(pro.ProductId))
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <img src="@pro.Avatar" style="height:60px;" />
+                                                            <h6 class="fw-600 mb-0">@pro.ProductName</h6>
+                                                        </td>
+                                                        <td><h6 class="fw-600 mb-1">@pro.Price đ</h6></td>
+                                                        <td><h6 class="fw-600 mb-1">@detail.Quantity</h6></td>
+                                                        <td><h6 class="fw-600 mb-1">@(pro.Price * detail.Quantity)</h6></td>
+                                                    </tr>
+                                                    subTotal += (float)(pro.Price * detail.Quantity);
+                                                }
+                                            }
+                                        } *@
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="">
+                            <h5>Lệnh:</h5>
+                            <div class="form-group">
+                                <a href="@Url.Action("Index","Orders")" class="btn btn-secondary">Quay về</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label "><b>Thông tin khách hàng</b></label>
+                        <input type="text" class="form-control" style="border:none;" value="Mã: @Model.CustomerId" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Điện thoại: @Model.Phone" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Email: @Model.Email" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Họ tên: @Model.LastName @Model.FirstName" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Địa chỉ: @Model.CustomerId" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label "><b>Thống kê</b></label>
+                        <input type="text" class="form-control" style="border:none;" value="Thành công: @ViewBag.SuccessOrder" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Thất bại: @ViewBag.FailedOrder" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Chờ xác nhận: @ViewBag.PendingOrder" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Đang vận chuyển: @ViewBag.ShippingOrdered" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Đã hủy: @ViewBag.CancelOrder" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Tổng tiền thành công: @ViewBag.TotalPriceSuccessOrder" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

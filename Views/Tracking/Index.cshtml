@@ -1,0 +1,77 @@
+﻿@model ComputerDeviceShopping.Models.Order
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li>Tra cứu đơn hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tracking-product mt-60 mb-60">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-center">
+                <h2>Mã đơn hàng của bạn</h2>
+                @using (Html.BeginForm("Index", "Tracking", FormMethod.Post))
+                {
+                    <input type="text" placeholder="Nhập vào mã đơn hàng của bạn" name="id" required>
+                    <button type="submit"><i class="fa fa-binoculars"></i> Tra cứu</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="feature-area  mt-60">
+    <div class="text-center mb-4"> <h3 style="color:red;">@ViewBag.NotificationTracking</h3></div>
+    @if(Model != null)
+    {
+        <div class="text-center mb-4">
+            <h3>Mã đơn hàng: #@Model.OrderId</h3>
+        </div>
+    }
+    <div class="container">
+        <div class="row justify-content-center">
+            @if (Model != null)
+            {
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="single-feature-2 bottom-after">
+                        <div class="@(Model.StatusId == 3 ? "animation" : "")">
+                            <i class="fa fa-paper-plane"></i>
+                        </div>
+                        <h4>@(Model.StatusId == 6 ? "Đã hủy" : "Đang chờ xác nhận")</h4>
+                        <p>Vui lòng chờ cửa hàng xác nhận đơn hàng</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="single-feature-2 @((Model.StatusId == 2 || Model.StatusId == 5) ? "bottom-after" : "disabled")  ">
+                        <div class="@(Model.StatusId == 2 ? "animation":"")">
+                            <i class="fa fa-plane"></i>
+                        </div>
+                        <h4>Đang giao đến</h4>
+                        <p>Đơn hàng đang thực hiện giao đến bạn sẽ sớm nhận được</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="single-feature-2 @(Model.StatusId == 5 ? "bottom-before " : "disabled")">
+                        <div class="@(Model.StatusId == 5 ? "animation" : "")">
+                            <i class="fa fa-gift"></i>
+                        </div>
+                        <h4>Đơn hàng thành công</h4>
+                        <p>Đơn hàng đã được xác nhận thành công đến tay người mua</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

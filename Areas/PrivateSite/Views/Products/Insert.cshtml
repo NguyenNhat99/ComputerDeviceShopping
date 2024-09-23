@@ -1,0 +1,233 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Product
+@{
+    var categories = (ViewData["Categories"] as List<Category>);
+    var brands = (ViewData["Brands"] as List<Brand>);
+    ViewData["Title"] = "Thêm sản phẩm";
+    var stock = ViewBag.Stock ?? null;
+    var categorySelected = ViewBag.CategorySelected ?? null;
+    var avatarProduct = ViewBag.AvatarProduct ?? null;
+    var imageProduct = ViewBag.ImageProduct ?? null;
+    var brandSelected = ViewBag.BrandSelected ?? null;
+    int count = 1;
+    var spectification = ViewData["Spectifications"] as List<Specification>;
+
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Thông tin sản phẩm</h5>
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("Insert", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="mb-3">
+                            @Html.TextBoxFor(p => p.ProductId, new { @class = "form-control", type = "hidden" })
+                            <label class="form-label">Tên sản phẩm</label>
+                            @Html.TextBoxFor(p => p.ProductName, new { @class = "form-control", placeholder = "Nhập tên sản phẩm", required = "required" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mô tả tóm tắt</label>
+                            @Html.TextAreaFor(p => p.DescriptionSummary, new { @class = "form-control", placeholder = "Nhập mô tả tóm tắt", required = "required"})
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mô tả chính</label>
+                            @Html.TextAreaFor(p => p.ProductDescription, new { @class = "form-control", placeholder = "Nhập mô tả sản phẩm", required = "required", id = "description" })
+                           @*  <input type="text" id="description" placeholder="Nhập mô tả sản phẩm" name="ProductDescription" class="form-control" /> *@
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Hình đại diện</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputSingleFile" name="avatar">
+                            </div>
+                            <div id="imagePreviewSingle" height="300px" width="300px" class="m-auto"></div>
+                            @if ( avatarProduct != null)
+                            {
+                                <img src="@avatarProduct" height="150px" width="150px" id="imagePreviewUpdate" title="Không có hình"/>
+                            }
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Hình sản phẩm</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputMultiFile" name="images" multiple="multiple">
+                            </div>
+                            <div id="imagePreviewMulti" min-height="300px" min-width="300px" class="m-auto"></div>
+                            @if (imageProduct != null)
+                            {
+                                foreach(var img in imageProduct)
+                                {
+                                    <img src="@img" height="150px" width="150px" id="imagePreviewMultiUpdate" class="imagePreviewMultiUpdateClass" />
+                                }
+                            }
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <label class="form-label">Trạng thái</label>
+                                <select name="Stock" class="form-control">
+                                    <option value="true" @(stock==null ? "" : stock==true ? "selected" : "" )>Còn hàng</option>
+                                    <option value='false' @(stock == null ? "" :  stock == false ? "selected" : "")>Hết hàng</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label">Giá</label>
+                                @Html.TextBoxFor(p => p.Price, new { @class = "form-control", placeholder = "Nhập giá sản phẩm", required = "required" })
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label">Loại sản phẩm</label>
+                                <select class="form-control" name="CategoryId">
+                                    @foreach (var category in categories)
+                                    {
+                                        <option value="@category.CategoryId" @(categorySelected == null ? "" : categorySelected == category.CategoryId ? "selected" : "")>@category.CategoryName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label">Thương hiệu</label>
+                                <select class="form-control" name="BrandId">
+                                    @foreach (var brand in brands)
+                                    {
+                                        <option value="@brand.BrandId" @(brandSelected == brand.BrandId ? "selected" : "")>@brand.BrandName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Thời gian đăng</label>
+                                <input type="text" class="form-control" value="@DateTime.Now" name="CreateAt" disabled>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="mb-3">
+                            <label class="form-label">Thông số kỹ thuật</label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    Tiêu đề
+                                </div>
+                                <div class="col-md-4">
+                                    Thông tin
+                                </div>
+                            </div>
+                            <div class="row">
+                                @if (spectification != null)
+                                {
+                                    foreach(var s in spectification)
+                                    {
+
+                                        <div class="col-md-4">
+                                            <input class="form-control label_spectification" value="@s.SpecificationLabel" name="spectificationList[@(count-1)].label" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control infomation_spectification" value="@s.SpecificationDetail" name="spectificationList[@(count-1)].description" />
+                                        </div>
+                                        count++;
+                                    }
+                                    count--;
+                                }
+                                else
+                                {
+                                    <div class="col-md-4">
+                                        <input class="form-control label_spectification" name="spectificationList[0].label" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control infomation_spectification" name="spectificationList[0].description" />
+                                    </div>
+                                }
+                            </div>
+                            <div class="" id="FormSpectification"></div>
+                            <div style="text-align:center;margin:auto;" class="btn_addformspectification">
+                                <button type="button" style="border:none;" onclick="AddFormSpectification(@count)">(+)</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.tiny.cloud/1/b74ahe4e18x18qxt2o4w63leenr4w5976k1r1wk915ugvr97/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+ tinymce.init({
+        selector: '#description',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+    document.getElementById('inputMultiFile').addEventListener('change', function () {
+        var imagePreviewMultiUpdate = document.getElementsByClassName('imagePreviewMultiUpdateClass');
+        for (var i = 0; i < imagePreviewMultiUpdate.length; i++) {
+            imagePreviewMultiUpdate[i].style.display = "none";
+        }
+        var files = this.files;
+        var imagePreview = document.getElementById('imagePreviewMulti');
+        imagePreview.innerHTML = '';
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '150px';
+                    imagePreview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+    // ảnh đại diện sản phẩm
+    document.getElementById('inputSingleFile').addEventListener('change', function () {
+        var imagePreviewUpdate = document.getElementById('imagePreviewUpdate');
+        imagePreviewUpdate.style.display = "none";
+        var file = this.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imagePreview = document.getElementById('imagePreviewSingle');
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '20%';
+                imagePreview.innerHTML = '';
+                imagePreview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    var count = '@count';
+    function AddFormSpectification() {
+        var form = document.querySelector('form');
+        var formData = new FormData(form);
+
+        // Save the form data
+        var spectificationData = {};
+        formData.forEach((value, key) => {
+            spectificationData[key] = value;
+        });
+
+        // Add new form
+        var addspectification = document.getElementById('FormSpectification');
+        addspectification.innerHTML += `
+            <div class="row">
+                <div class="col-md-4">
+                        <input class="form-control label_spectification" name="spectificationList[${count}].label" />
+                </div>
+                <div class="col-md-8">
+                        <input class="form-control infomation_spectification" name="spectificationList[${count}].description" />
+                </div>
+            </div>`;
+
+        // Reapply previous data
+        document.querySelectorAll('.label_spectification, .infomation_spectification').forEach((input) => {
+            if (spectificationData[input.name]) {
+                input.value = spectificationData[input.name];
+            }
+        });
+
+        count++;
+    }
+</script>
+

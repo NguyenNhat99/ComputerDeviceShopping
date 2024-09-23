@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href='@Url.Action("Index","Home")'>Trang chủ</a></li>
+                        <li>Liên hệ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<section class="account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="account-contents" style="background: url('assets/img/about/about2.jpg'); background-size: cover;">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                            <div class="account-thumb">
+                                <h2>Liên hệ chúng tôi</h2>
+                                <p>Để nắm bắt được vấn đề của khách hàng bạn có thể liên hệ với chúng tôi thông qua form dưới đây</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                            <div class="account-content">
+                                @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="single-acc-field">
+                                                <label for="name">Họ tên</label>
+                                                <input type="text" placeholder="Name" name="name" id="name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="single-acc-field">
+                                                <label for="email">Email</label>
+                                                <input type="email" placeholder="Email" name="email" id="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="single-acc-field">
+                                                <label for="msg">Nội dung</label>
+                                                <textarea name="content" id="msg" rows="4" placeholder="Vấn đề bạn cần hỗ trợ" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>@ViewBag.Notify</p>
+                                    <div class="single-acc-field">
+                                        <button type="submit">Gửi tin nhắn</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

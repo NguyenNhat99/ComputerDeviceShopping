@@ -1,0 +1,91 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.About
+
+<footer class="footer_widgets">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="widgets_container contact_us">
+                        <div class="footer_logo">
+                            <a href="#"><img src="/images/logo/logotechgear.png" alt=""></a>
+                        </div>
+                        <div class="footer_contact">
+                            <p>@Model.Introduce</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="widgets_container widget_menu">
+                        <h3>Thông tin</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="about.html">Về chúng tôi</a></li>
+                                <li><a href="@Url.Action("Index","Blog")">Bài viêt</a></li>
+                                <li><a href="contact.html">Chính sách</a></li>
+                                <li><a href="#">Hoàn trả</a></li>
+                                <li><a href="#">Mã giảm giá</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="widgets_container widget_menu">
+                        <h3>Tài khoản</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="@Url.Action("Index","UserProfile")">Tài khoản của tôi</a></li>
+                                <li><a href="@Url.Action("OrderHistory","UserProfile")">Lịch sử đơn hàng</a></li>
+                                <li><a href="@Url.Action("FavouriteList","UserProfile")">Danh sách yêu thích</a></li>
+                                <li><a href="@Url.Action("Index","Blog")">Bài viết mới</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="widgets_container newsletter">
+                        <h3>Theo dõi chúng tôi</h3>
+                        <div class="footer_social_link">
+                            <ul>
+                                <li><a class="facebook" href="@Model.FacebookLink" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="twitter" href="@Model.TwitterLink" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="instagram" href="@Model.InstagramLink" title="instagram"><i class="fa fa-instagram"></i></a></li>
+                                <li><a class="linkedin" href="@Model.YoutubeLink" title="youtube"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                       @*  <div class="subscribe_form">
+                            <h3>Join Our Newsletter Now</h3>
+                            <form id="mc-form" class="mc-form footer-newsletter">
+                                <input id="mc-email" type="email" autocomplete="off" placeholder="Địa chỉ email của bạn..." />
+                                <button id="mc-submit">Đăng ký!</button>
+                            </form>
+                            <!-- mailchimp-alerts Start -->
+                            <div class="mailchimp-alerts text-centre">
+                                <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                            </div><!-- mailchimp-alerts end -->
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="copyright_area">
+                        <p> <a href="/">© Techgears</a></p>
+                    </div>
+                </div>
+              @*   <div class="col-lg-6 col-md-6">
+                    <div class="footer_payment text-right">
+                        <a href="#"><img src="/images/plsite/icon/payment.png" alt=""></a>
+                    </div>
+                </div> *@
+            </div>
+        </div>
+    </div>
+</footer>
+<!--footer area end-->

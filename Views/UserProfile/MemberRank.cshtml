@@ -1,0 +1,155 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.Common;
+@{
+    ViewData["Title"] = "MemberRank";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var memberLevelList = ViewData["MemberRankList"] as List<MemberLevel>;
+    var memberLevelCurrent = ViewData["MemberLevelCurrent"] as MemberLevel;
+}
+<style>
+
+    .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .user-info h2 {
+        margin: 0 0 10px;
+    }
+
+    .points {
+        font-size: 18px;
+        color: #ff0000;
+    }
+
+        .points .amount {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .points .date {
+            font-size: 14px;
+            color: #888;
+        }
+
+    .progress-bar {
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        height: 10px;
+        position: relative;
+        margin: 20px 0;
+    }
+
+        .progress-bar .progress {
+            background-color: #ff0000;
+            border-radius: 4px;
+            height: 100%;
+            position: absolute;
+        }
+
+    .icon {
+        width: 24px;
+        height: 24px;
+        background-image: url('icon.png'); /* Replace with the actual URL or path to your icon */
+        background-size: cover;
+        position: absolute;
+        top: -7px;
+    }
+
+    .current-icon {
+        left: 0;
+    }
+
+    .next-icon {
+        left: 97%; /* Adjust based on the progress */
+    }
+
+    .upgrade-info {
+        text-align: center;
+        color: #555;
+        font-size: 14px;
+    }
+
+        .upgrade-info .amount {
+            font-weight: bold;
+        }
+
+</style>
+<div class="container emp-profile">
+    @await Component.InvokeAsync("SidebarUserProfile")
+        <div class="col-md-8 p-0" style="margin-top:-20px;">
+            <div class="container">
+                <!-- Thông tin người dùng -->
+                <!-- Thông tin điểm tích lũy -->
+                <div class="card p-3 mb-3">
+                    <h4>Nguyễn Hoàng Nhất</h4>
+                    <div class="points">
+                    <span class="amount text-danger">@ConvertHelper.ConvertToVND(ViewBag.TotalOrderAmount)</span>
+                        <span class="date">(Điểm tích lũy từ 01/01/@DateTime.Now.Year)</span>
+                    </div>
+                <p class="text-center mt-2">Hạng thành viên đang đạt: <span class="amount text-danger">@(memberLevelCurrent.MemberLevelId == 1 ? "Chưa có" : memberLevelCurrent.LevelName)</span> </p>
+                    @* <p class="text-center mt-2">Bạn cần mua thêm <span class="amount text-danger">1.341.000đ</span> để lên hạng S-Vip</p> *@
+                </div>
+                <div class="card p-3 mb-3">
+                    <h4 class="text-center text-danger">CẬP NHẬT ƯU ĐÃI HẠNG THÀNH VIÊN TECHGEAR</h4>
+                    <p class="text-center">Vui lòng chọn hạng thành viên để xem chi tiết ưu đãi</p>
+                    <div class="d-flex justify-content-around">
+                    @foreach (var level in memberLevelList)
+                    {
+                        <div class="text-center">
+                            <img src="@level.ImageUrl" alt="Hạng-@level.LevelName" style="height:75px;width:75px;" class="img-fluid">
+                            <p>@level.LevelName</p>
+                            <input type="radio" name="member-tier" value="@level.MemberLevelId"
+                                   onchange="DisplayContional(@level.MemberLevelId)"
+                            @(level.MemberLevelId == memberLevelCurrent.MemberLevelId ? "checked" : "")>
+                            @* <input type="radio" name="member-tier" value="@level.MemberLevelId" onchange="DisplayContional(@level.MemberLevelId)"> *@
+                        </div>
+                    }
+                    </div>
+                </div>
+                <!-- Điều kiện và ưu đãi -->
+                <div id="conditionMembership">
+
+                </div>
+
+               @*  <div class="card p-3 mb-3">
+                    <h5>ĐIỀU KIỆN</h5>
+                    <p>Tổng số tiền mua hàng tích lũy trong năm nay và năm liền trước đạt từ 15 đến 50 triệu đồng, không tính đơn hàng doanh nghiệp B2B</p>
+                    <h5>ƯU ĐÃI MUA HÀNG</h5>
+                    <ul>
+                        <li>Ưu đãi thu cũ 5% lên đến 300K cho các sản phẩm mua tại CellphoneS</li>
+                        <li>Miễn phí giao hàng áp dụng cho mọi đơn hàng</li>
+                        <li>Tặng voucher 100K khi lên hạng (từ SNEW lên SMEM)</li>
+                    </ul>
+                </div> *@
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Gọi API với MemberLevelId = 1 ngay khi trang được tải
+        DisplayContional(3);
+    });
+    function DisplayContional(id){
+        fetch(`/api/userprofile/getcontionalmemberrank/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        var item = document.getElementById('conditionMembership');
+        item.innerHTML = ` <div class="card p-3 mb-3">
+                      ${data.data.levelDescription}
+                    </div>`;
+    })
+    .catch(error => {
+        alert("Error")
+    });
+    }
+</script>
+

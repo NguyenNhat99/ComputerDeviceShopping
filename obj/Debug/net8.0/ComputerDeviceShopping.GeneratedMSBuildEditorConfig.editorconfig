@@ -1,0 +1,255 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ComputerDeviceShopping
+build_property.RootNamespace = ComputerDeviceShopping
+build_property.ProjectDir = C:\Users\ADMIN\source\repos\ComputerDeviceShopping\ComputerDeviceShopping\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ADMIN\source\repos\ComputerDeviceShopping\ComputerDeviceShopping
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/About/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQWJvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/AdminProfile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQWRtaW5Qcm9maWxlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Articles/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQXJ0aWNsZXNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Articles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQXJ0aWNsZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Articles/Insert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQXJ0aWNsZXNcSW5zZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Articles/ManagementArticles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQXJ0aWNsZXNcTWFuYWdlbWVudEFydGljbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Brands/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQnJhbmRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Categories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/ManagementAccount/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcTWFuYWdlbWVudEFjY291bnRcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/ManagementAccount/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcTWFuYWdlbWVudEFjY291bnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Membership/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcTWVtYmVyc2hpcFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Orders/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcT3JkZXJzXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Orders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcT3JkZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Products/Insert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcUHJvZHVjdHNcSW5zZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Products/ProductsManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcUHJvZHVjdHNcUHJvZHVjdHNNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Revenue/CustomerDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcUmV2ZW51ZVxDdXN0b21lckRldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Revenue/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcUmV2ZW51ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/SettingSite/Slider.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcU2V0dGluZ1NpdGVcU2xpZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Vouchers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcVm91Y2hlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Vouchers/MultiInsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcVm91Y2hlcnNcTXVsdGlJbnNlcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Account/ComfirmCode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDb21maXJtQ29kZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Blog/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Blog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Checkout/CheckoutError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcQ2hlY2tvdXRFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Checkout/CheckoutSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcQ2hlY2tvdXRTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Checkout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/OrderTracking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJUcmFja2luZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/PrivacyPolicy/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmFjeVBvbGljeVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/Components/Footer/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRm9vdGVyXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/Components/HeaderTop/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcSGVhZGVyVG9wXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/Components/MiniCartMobile/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWluaUNhcnRNb2JpbGVcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/Components/MiniCart/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWluaUNhcnRcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/Components/SidebarBlog/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2lkZWJhckJsb2dcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/Components/SidebarUserProfile/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2lkZWJhclVzZXJQcm9maWxlXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shopping/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcHBpbmdcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shopping/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcHBpbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Tracking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhY2tpbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/UserProfile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/UserProfile/MemberRank.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcTWVtYmVyUmFuay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/UserProfile/Order.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcT3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/UserProfile/OrderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcT3JkZXJEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/UserProfile/WishList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcV2lzaExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Areas/PrivateSite/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJpdmF0ZVNpdGVcVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-cry8oesy4t
+
+[C:/Users/ADMIN/source/repos/ComputerDeviceShopping/ComputerDeviceShopping/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-el4evjr512

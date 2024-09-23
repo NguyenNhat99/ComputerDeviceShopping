@@ -1,0 +1,46 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Account
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="profile-img">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+            <div class="file btn btn-lg btn-primary">
+                Thay đổi ảnh
+                <input type="file" name="file" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="profile-head">
+            <h5>
+                Nhóm tài khoản: @ViewBag.GroupAcc
+            </h5>
+            <h6>@Model.Username</h6>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Thông tin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Đổi mật khẩu</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="profile-work">
+            <p>Thông tin</p>
+            <a href='@Url.Action("Index","UserProfile")'>Thông tin</a><br />
+            <a href='@Url.Action("MemberRank","UserProfile")'>Hạng thành viên</a><br />
+            <p>Danh sách</p>
+            <a href='@Url.Action("Order","UserProfile")'>Danh sách đơn hàng</a><br />
+            <a href='@Url.Action("WishList","UserProfile")'>Sản phẩm yêu thích</a><br />
+            <p>Lệnh</p>
+            <a href='@Url.Action("Logout","Account")'>Đăng xuất</a><br />
+        </div>
+    </div>

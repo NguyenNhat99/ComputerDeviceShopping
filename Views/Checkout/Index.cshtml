@@ -1,0 +1,146 @@
+﻿@using ComputerDeviceShopping.Models;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var items = ViewData["ShoppingCart"] as List<CartItem>;
+    var account = ViewData["InformationUser"] as Account;
+}
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li>Thanh toán</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Checkout_section mt-60">
+    <div class="container">
+        <div class="checkout_form">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <h3>Đơn hàng của bạn</h3>
+                    <div class="order_table table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var item in items)
+                                {
+                                    <tr>
+                                        <td> @item.ProductName <strong> × @item.Quantity</strong></td>
+                                        <td> @item.Total</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Tổng: </th>
+                                        <td>@ViewBag.totalCart</td>
+                                </tr>
+                                <tr>
+                                    <th>Áp dụng mã giảm giá: </th>
+                                        <td>-@ViewBag.Discount %</td>
+                                </tr>
+                                <tr class="order_total">
+                                    <th>Tổng đơn hàng</th>
+                                    <td><strong>@ViewBag.subTotal</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="coupon_area mt-5">
+                            <div class="coupon_code left">
+                                <h3>Mã giảm giá</h3>
+                                <div class="coupon_inner">
+                                    <p>Nhập mã giảm giá của bạn nếu có.</p>
+                                    <input placeholder="@(account!=null ? "Nhập vào mã giảm giá" : "Đăng nhập để sử dụng chức năng này")" id="codeVoucher" type="text" @(account!=null ? "" : "disabled")>
+                                    <button class="mt-3" type="button" onclick="ApllyVoucher(document.getElementById('codeVoucher').value)">Xác nhận</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    @using (Html.BeginForm("Index", "Checkout", FormMethod.Post))
+                    {
+                        <h3>Thông tin nhận hàng</h3>
+                        <div class="row">
+                            <div class="col-lg-6 mb-20">
+                                <label>Họ <span>*</span></label>
+                                <input type="text" value='@(account!=null ? account.LastName : "")' name="LastName" placeholder="Nhập họ ..." @(account != null ? "disabled" : "") required>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <label>Tên  <span>*</span></label>
+                                <input type="text" value='@(account!=null ? account.FirstName : "")' name="FirstName" placeholder="Nhập tên ..." @(account != null ? "disabled" : "") required>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <label>Số điện thoại<span>*</span></label>
+                                <input type="text" value="@(account!=null ? account.Phone : "")" name="Phone" placeholder="Nhập số điện thoại liên lạc ..." @(account != null ? "disabled" : "") required>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <label> Địa chỉ Email<span>*</span></label>
+                                <input type="text" value="@(account!=null ? account.Email : "")" name="Email" placeholder="Nhập địa chỉ Email để nhận hóa đơn ...." @(account != null ? "disabled" : "") required>
+                            </div>
+                            <div class="col-12 mb-20">
+                                <label>Địa chỉ nhận hàng  <span>*</span></label>
+                                <input placeholder="địa chỉ đầy đủ" value="@(account!=null ? account.DeliverAddress : "")" name="DeliverAddress" type="text">
+                            </div>
+                            <div class="col-12">
+                                <div class="order-notes">
+                                    <label for="order_note">Ghi chú</label>
+                                    <textarea id="order_note" rows="2" name="note" placeholder="Ghi chú cho đơn hàng hoặc nhập địa chỉ rõ hơn tại đây ." required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="payment_method">
+                            <div class="panel-default">
+                                <input id="payment" name="check_method" checked type="radio" value="2" data-target="createp_account" />
+                                <label for="payment" data-toggle="collapse" data-target="#collapseThree" aria-controls="collapseThree">Thanh toán khi nhận hàng</label>
+                            </div>
+                            <div class="panel-default">
+                                <input id="payment_defult" name="check_method" value="1" type="radio" data-target="createp_account" />
+                                <label for="payment_defult" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour">Thanh toán qua momo <img style="width:60px !important;" src="/images/plsite/logo/snapedit_1723732459557.png" alt=""></label>
+                            </div>
+                        </div>
+                        <div class="order_button">
+                            <button type="submit">Tiến hành thanh toán</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+<script>
+    function ApllyVoucher(code) {
+        fetch(`api/checkout/applyvoucher/${code}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Thành công");
+                    location.reload(true);
+                } else {
+                    alert("Thất bại");
+                }
+            })
+            .catch(error => {
+                alert("Lỗi")
+            });
+    }
+</script>

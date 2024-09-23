@@ -1,0 +1,168 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.ViewModel;
+@using ComputerDeviceShopping.Controllers;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ComputerDeviceShoppingsite</title>
+    <link rel="stylesheet" href="~/css/publicsite/plugins.css" />
+    <link href="~/css/publicsite/stylex.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/publicsite/custom.css" />
+</head>
+<body>
+@*     <div class="off_canvars_overlay">
+    </div> *@
+    <div class="Offcanvas_menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="canvas_open">
+                        <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                    </div>
+                    <div class="Offcanvas_menu_wrapper">
+                        <div class="canvas_close">
+                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                        </div>
+                        <div class="support_info">
+                            <p>Hotline: <a href="tel:0942962762">0942962762</a></p>
+                        </div>
+                        <div class="top_right text-right">
+                            <ul>
+                                <li><a href="@Url.Action("Index","UserProfile")"> Tài khoản của tôi </a></li>
+                                <li><a href="@Url.Action("Index","Checkout")"> Thanh toán </a></li>
+                            </ul>
+                        </div>
+                        <div class="search_container">
+                            @using (Html.BeginForm("Index","Shopping",FormMethod.Post)){
+                                <div class="search_box">
+                                    <input placeholder="Tìm kiếm sản phẩm..." name="name" type="text">
+                                    <button type="submit">Tìm</button>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="middel_right_info">
+                            <div class="header_wishlist">
+                                <a href="@Url.Action("Index","UserProfile")"><img src="/images/plsite/user.png" alt=""></a>
+                            </div>
+                            @await Component.InvokeAsync("MiniCartMobile")
+                        </div>
+                        <div id="menu" class="text-left ">
+                            <ul class="offcanvas_main_menu">
+                                <li class="menu-item-has-children active">
+                                    <a href="/">Trang chủ</a>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href='@Url.Action("Index","Shopping")'>Sản phẩm</a>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href='@Url.Action("Index","Blog")'>Bài viết</a>
+                                </li>
+                                   <li class="menu-item-has-children">
+                                    <a href='@Url.Action("Index","Tracking")'>Tra cứu đơn hàng</a>
+                                </li>
+                              @*   <li class="menu-item-has-children">
+                                    <a href='@Url.Action("Index","Contact")'>Liên hệ</a>
+                                </li> *@
+                            </ul>
+                        </div>
+                        <div class="Offcanvas_footer">
+                            <span><a href="#"><i class="fa fa-envelope-o"></i> nguyennhat025.go@gmail.com</a></span>
+                            <ul>
+                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="main_header">
+            @await Component.InvokeAsync("HeaderTop")
+          
+            <div class="header_middle">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="logo">
+                                <a href="@Url.Action("Index","Home")"><img src="/images/logo/logotechgear.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-6">
+                            <div class="middel_right">
+                                <div class="search_container">
+                                    @using (Html.BeginForm("Index", "Shopping", FormMethod.Post))
+                                    {
+                                        <div class="search_box">
+                                            <input placeholder="Tìm kiếm sản phẩm ..." name="name" type="text">
+                                            <button type="submit">Tìm kiếm</button>
+                                        </div>
+                                    }
+                                </div>
+                                @await Component.InvokeAsync("MiniCart")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_menu_area">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="main_menu menu_position">
+                                <nav>
+                                    <ul>
+                                        <li><a href="/">Trang chủ</a></li>
+                                        <li><a href='@Url.Action("Index","Shopping")'>Sản phẩm</a></li>
+                                        <li><a href='@Url.Action("Index","Blog")'>Bài viết</a></li>
+                                        <li><a href='@Url.Action("Index","Tracking")'>Tra cứu đơn hàng</a></li>
+                                        @* <li><a href='@Url.Action("Index","Contact")'>Liên hệ</a></li> *@
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+   
+    @RenderBody()
+
+    @await Component.InvokeAsync("Footer")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/Common.js"></script>
+    <script src="~/js/publicsite/CommonScripts.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/js/publicsite/plugins.js"></script>
+    <!-- Main JS -->
+    <script src="~/js/publicsite/main.js"></script>
+    <script>
+        function DeleteProductFromCart(id) {
+            fetch(`/cart/deleteitemincart/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    location.reload();
+                    console.log("Abc");
+                })
+                .catch(error => {
+                    alert("Error")
+                });
+        }
+    </script>
+</body>
+</html>

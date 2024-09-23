@@ -1,0 +1,136 @@
+﻿@using ComputerDeviceShopping.Models;
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var shoppingCart = ViewData["ShoppingCart"] as List<CartItem>;
+}
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href='@Url.Action("Index","Home")'>Trang chủ</a></li>
+                        <li>Giỏ hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!--shopping cart area start -->
+<div class="shopping_cart_area mt-60">
+    <div class="container">
+        <div >
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+                        <div class="cart_page table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product_thumb">Hình ảnh</th>
+                                        <th class="product_name">Tên sản phẩm</th>
+                                        <th class="product-price">Giá</th>
+                                        <th class="product_quantity">Số lượng</th>
+                                        <th class="product_total">Tổng</th>
+                                        <th class="product_remove">Lệnh</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in shoppingCart)
+                                    {
+                                        <tr>
+                                            <input type="hidden" value="@item.ProductId" id="productId"/>
+                                            <td class="product_thumb"><a href="@Url.Action("Detail","Shopping",new{id = item.ProductId})"><img src="@item.ImageProduct" alt=""></a></td>
+                                            <td class="product_name"><a href="@Url.Action("Detail","Shopping",new{id = item.ProductId})">@item.ProductName</a></td>
+                                            <td class="product-price">@item.Price</td>
+                                            <td class="product_quantity"><label>x</label> <input min="1" max="100" onchange="UpdateCart(@item.ProductId)" value="@item.Quantity" id="quantity-@item.ProductId" type="number"></td>
+                                            <td class="product_total">@item.Total</td>
+                                           @*  <td class="product_remove"><a href="@Url.Action("Cart","Delete",new{id = item.IDProduct})"><i class="ion-android-close"></i></a></td> *@
+                                           @*  <form action="@Url.Action("Cart","Delete")" method="post">
+                                                <input type="hidden" value="@item.IDProduct" name="id"/>
+                                                <td class="product_remove"><button style="border:none;background-color:#fff;"><i class="ion-android-close"></i></button></td>
+                                            </form> *@
+
+                                            <td class="product_remove"><button type="button" onclick="DeleteProductFromCart(@item.ProductId)" style="background-color:#fff; border:none;"><i class="ion-android-close"></i></button></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                     @*    <div class="cart_submit">
+                            <button type="button" onclick="UpdateCart()">Cập nhật đơn hàng</button>
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+            <!--coupon code area start-->
+            <div class="coupon_area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                      @*   <div class="coupon_code left">
+                            <h3>Mã giảm giá</h3>
+                            <div class="coupon_inner">
+                                <p>Nhập mã giảm giá của bạn nếu có.</p>
+                                <input placeholder="Coupon code" name="codeVoucher" id="codeVoucher" type="text">
+                                <button type="button" onclick="ApllyVoucher(document.getElementById('codeVoucher').value)">Xác nhận</button>
+                            </div>
+                        </div> *@
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="coupon_code right">
+                            <h3>Tổng đơn hàng</h3>
+                            <div class="coupon_inner">
+                                <div class="cart_subtotal">
+                                    <p>Áp dụng giảm giá</p>
+                                    <p class="cart_amount">@ViewBag.ApllyVc</p>
+                                </div>
+                                <div class="cart_subtotal">
+                                    <p>Phí giao hàng</p>
+                                    <p class="cart_amount">@ViewBag.FeeShipping</p>
+                                </div>
+                                <div class="cart_subtotal">
+                                    <p>Tổng</p>
+                                    <p class="cart_amount">@ViewBag.TotalPriceCart</p>
+                                </div>
+                                <div class="checkout_btn">
+                                    <a href="@Url.Action("Index","Checkout")">Tiến hành thanh toán</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  
+    function UpdateCart(id) {
+        var quantity = document.getElementById('quantity-'+id).value;
+        console.log(quantity);
+        console.log(id)
+        fetch(`api/cart/updatecart/${id}&${quantity}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload(true);
+                }else{
+                }
+
+            })
+            .catch(error => {
+                alert("Error")
+            });
+    }
+</script>

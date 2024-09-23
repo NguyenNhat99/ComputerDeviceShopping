@@ -1,0 +1,185 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.Common;
+
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var orders = ViewData["OrderList"] as List<Order>;
+    var ordersDetail = ViewData["OrderDetailList"] as List<OrdersDetail>;
+    var productList = ViewData["ProductList"] as List<Product>;
+    int count = 0;
+    int countOrderDetail = 0;
+    var statusOrderList = ViewData["StatusOrderList"] as List<OrderStatus>;
+
+    int flagStatus = 0;
+}
+<style>
+    .stat-box {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+    }
+
+    .date-picker input[type="date"] {
+        width: auto;
+    }
+
+    .order-list {
+        margin-top: 20px;
+    }
+
+    .order-item {
+        padding: 15px;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+    }
+
+        .order-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .text-danger {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .badge {
+        font-size: 0.875rem;
+    }
+
+    .text-muted {
+        font-size: 0.875rem;
+    }
+
+</style>
+<div class="container emp-profile">
+        @await Component.InvokeAsync("SidebarUserProfile")
+        <div class="col-md-8 p-0" style="margin-top:-20px;">
+            <div class="container">
+                <div class="row text-center mb-4">
+                    <div class="col-md-6">
+                        <div class="stat-box p-4">
+                            <h3>@ViewBag.TotalOrder</h3>
+                            <p>Đơn hàng</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="stat-box p-4">
+                        <h3>@ConvertHelper.ConvertToVND(ViewBag.SumPriceOrder??0)</h3>
+                            <p>Tổng tiền tích lũy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="justify-content-between mb-3">
+                    <div>
+                    <a class="btn btn-outline-primary" href="@Url.Action("Order","UserProfile",new{status = 0})">Tất cả</a>
+                        @foreach (var status in statusOrderList)
+                        {
+                            <a class="btn btn-outline-primary" href="@Url.Action("Order","UserProfile",new{status = status.OrderStatusId,page =@ViewBag.Page})">
+                                @status.OrderStatusName
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="order-list">
+                    @foreach(var order in orders)
+                    {
+                        count = 0;
+                        <div class="order-item card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    @foreach (var detail in ordersDetail.Where(p => p.OrderId.Equals(order.OrderId)).ToList())
+                                    {
+                                        countOrderDetail = ordersDetail.Where(p => p.OrderId.Equals(order.OrderId)).ToList().Count();
+                                        @foreach (var product in productList.Where(p => p.ProductId.Equals(detail.ProductId)).OrderByDescending(d=>d.Price).ToList())
+                                        {
+                                            if(count == 0)
+                                            {
+                                                <div class="col-md-2">
+                                                    <img src="@product.Avatar" class="img-fluid" alt="Product Image">
+                                                </div>
+                                            }
+                                            if (count == 0)
+                                            {
+                                                <div class="col-md-8">
+                                                    <h5 class="card-title">@product.ProductName</h5>
+                                                    @if (countOrderDetail - 1 > 0)
+                                                    {
+                                                        <p class="card-text">và @(countOrderDetail - 1) sản phẩm khác<span class="badge badge-danger">Đã xuất VAT</span></p>
+                                                    }
+                                                <p class="card-text text-danger">@ConvertHelper.ConvertToVND(order.TotalPrice??0)</p>
+                                                </div>
+                                            }
+                                            count++;
+                                        }
+                                    }
+                                    <div class="col-md-2 text-right">
+                                        <p class="text-muted">@order.CreateAt</p>
+                                        <a class="btn btn-outline-primary btn-sm" href="@Url.Action("OrderDetail","UserProfile",new{idOrder=order.OrderId})">Xem chi tiết</a>
+                                        <span class="badge @OrderStatusHelper.GetBadgeClassById(order.StatusId??0) rounded-3 fw-600">
+                                            @OrderStatusHelper.getNameStatusById(order.StatusId??0)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        <div class="blog_pagination">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="pagination">
+                            @{
+                                int prevPage = ViewBag.Page - 1;
+                                if (prevPage <= 0)
+                                {
+                                    prevPage = 1;
+                                }
+                                int nextPage = ViewBag.Page + 1;
+                                if (nextPage > ViewBag.NoOfPages)
+                                {
+                                    nextPage = ViewBag.NoOfPages;
+                                }
+                            }
+                            @if (orders.Count > 0)
+                            {
+                                <ul>
+                                    <li class=""><a class="" href="@Url.Action("Order","UserProfile",new {page=prevPage, status=@flagStatus})">&laquo;</a></li>
+                                    @for (int i = ViewBag.DisplayPage; i < ViewBag.NoOfPages; i++)
+                                    {
+                                        if (i + 1 == ViewBag.Page)
+                                        {
+                                            <li class="current"><a href="@Url.Action("Order","UserProfile",new {page = i+1 , status=@flagStatus})" class="">@(i + 1)</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class=""><a href="@Url.Action("Order","UserProfile",new {page = i+1, status=@flagStatus })">@(i + 1)</a></li>
+                                        }
+                                    }
+                                    <li class="next"><a class="" href="@Url.Action("Order","UserProfile",new {page=nextPage, status=@flagStatus})">&raquo;</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <h1 class="text-center">Danh sách trống</h1>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

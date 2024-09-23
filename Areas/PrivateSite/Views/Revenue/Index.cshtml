@@ -1,0 +1,165 @@
+﻿@using ComputerDeviceShopping.Models;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
+    var customerList = ViewData["CustomerList"] as List<Customer>;
+    var orderList = ViewData["OrderList"] as List<Order>;
+    int sumTotalOrder = 0;
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6" style="margin-top:90px;">
+                    <h4>Doanh thu tháng @DateTime.Now.Month</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label">Số đơn hàng đã hoàn thành</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="@ViewBag.numberOfOrderSuccessMonth" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label">Tổng thu nhập</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="@ViewBag.revenueMonth" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6" style="margin-top:40px;">
+                    <h4>Tổng doanh thu năm @DateTime.Now.Year</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label">Số đơn hàng đã hoàn thành</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="@ViewBag.numberOfOrderSuccessYear" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label">Tổng doanh thu</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="@ViewBag.revenueYear" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h5 class="card-title fw-600 mb-4">Thống kê khách hàng</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            @using (Html.BeginForm("Index", "Categories", FormMethod.Post))
+                            {
+                                <div class="searchForm">
+                                    <input class="form-control" name="name" placeholder="Tìm kiếm ..." id="searchCountry" />
+                                    <button type="submit" class="btn btn-default"><i class="ti ti-search"></i></button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-post text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Mã khách hàng</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Họ tên</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Email</h6>
+                                    </th>
+                                <th><h6 class="fw-600 mb-0">Số tiền đã mua</h6></th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Lệnh</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var customer in customerList)
+                                    {
+                                        <tr>
+                                        <td><h6 class="fw-600 mb-0">@customer.CustomerId</h6></td>
+                                        <td><h6 class="fw-600 mb-1">@customer.LastName @customer.FirstName</h6></td>
+                                        <td><h6 class="fw-600 mb-1">@customer.Email</h6></td>
+                                         <td><h6 class="fw-600 mb-1">@orderList.Where(p => p.CustomerId.Equals(customer.CustomerId)).ToList().Sum(p => p.TotalPrice)</h6></td>
+                                            <td>
+                                        <a class="btn btn-primary" href="@Url.Action("CustomerDetail","Revenue",new{id = customer.CustomerId})">Chi tiết</a>
+                                            </td>
+                                        </tr>
+                                    }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-tools p-5 pt-0 pb-0 m-auto" id="pagination">
+                  @*   @{
+                        int prevPage = ViewBag.Page - 1;
+                        if (prevPage <= 0)
+                        {
+                            prevPage = 1;
+                        }
+                        int nextPage = ViewBag.Page + 1;
+                        if (nextPage > ViewBag.NoOfPages)
+                        {
+                            nextPage = ViewBag.NoOfPages;
+                        }
+                    }
+                    @if (categories.Count > 0)
+                    {
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Index","Categories",new {page=prevPage})">&laquo;</a></li>
+                            @for (int i = ViewBag.DisplayPage; i < ViewBag.NoOfPages; i++)
+                            {
+                                if (i + 1 == ViewBag.Page)
+                                {
+                                    <li class="page-item"><a href="@Url.Action("Index","Categories",new {page = i+1 })" class="active page-link">@(i + 1)</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a href="@Url.Action("Index","Categories",new {page = i+1 })" class="page-link">@(i + 1)</a></li>
+                                }
+                            }
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Index","Categories",new {page=nextPage})">&raquo;</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <h1 class="text-center">Sản phẩm này hiện tại không có</h1>
+                    } *@
+                </div>
+            </div>
+        </div>
+    </div>
+

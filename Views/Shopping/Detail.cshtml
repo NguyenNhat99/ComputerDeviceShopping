@@ -1,0 +1,402 @@
+﻿@using ComputerDeviceShopping.Models;
+@model IEnumerable<ComputerDeviceShopping.Models.Comment>
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var imageProduct = ViewData["ImageProduct"] as List<Image>;
+    var product = ViewData["Product"] as Product;
+    var accountSession = (ViewData["AccountSession"] as Account);
+    bool checkSession = accountSession!=null ? true : false;
+    string checkusr = (accountSession != null ? accountSession.UserId : "");
+    var spectificationProduct = ViewData["SpectificationProduct"] as List<Specification>;
+
+}
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li><a href="@Url.Action("Index","Shopping")">Sản phẩm</a></li>
+                        <li>Chi tiết sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--product details start-->
+<div class="product_details mt-60 mb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product-details-tab">
+                    <div id="img-1" class="zoomWrapper single-zoom">
+                        <a href="#">
+                            <img id="zoom1" src="@product.Avatar" data-zoom-image="@product.Avatar" alt="big-1">
+                        </a>
+                    </div>
+                    <div class="single-zoom-thumb">
+                        <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                            @foreach(var image in imageProduct)
+                            {
+                                 <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="@image.ImageUrl" data-zoom-image="@image.ImageUrl">
+                                        <img src="@image.ImageUrl" alt="zo-th-1" />
+                                    </a>
+                                </li>                                
+                            }
+                          
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product_d_right">
+                    <form action="#">
+                        <h1>@product.ProductName</h1>
+                       @*  <div class=" product_ratting">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li class="review"><a href="#"> (250 reviews) </a></li>
+                            </ul>
+
+                        </div> *@
+                        <div class="price_box">
+                            <span class="current_price">@product.Price đ</span>
+                            @* <span class="old_price">$80.00</span> *@
+                        </div>
+                        <div class="product_desc">
+                            <ul>
+                                <li>@(product.Stock == true ? "Còn hàng" : "")</li>
+                                <li>Miễn phí giao hàng</li>
+                            </ul>
+                            <p style="word-wrap: break-word;text-align: justify;">@product.DescriptionSummary</p>
+                        </div>
+                        <div class="product_variant quantity">
+                            <label>Số lượng</label>
+                            <input min="1" max="100" value="1" id="quantityProduct" type="number">
+                            <button onclick="AddCart(@product.ProductId,document.getElementById('quantityProduct').value)" class="button" type="button">Thêm vào giỏ</button>
+                        </div>
+                        <div class="product_meta">
+                            <span>Loại sản phẩm: <a href="#">@ViewBag.CategoryProduct</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product_d_info mb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_d_inner">
+                    <div class="product_info_button">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Mô tả</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Thông số kỹ thuật</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="info" role="tabpanel">
+                            <div class="product_info_content">
+                                <p>@Html.Raw(product.ProductDescription)</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="sheet" role="tabpanel">
+                            <div class="product_d_table">
+                                <table>
+                                    <tbody>
+                                        @foreach (var sp in spectificationProduct){
+                                            <tr>
+                                                <td class="first_child">@sp.SpecificationLabel</td>
+                                                <td>@sp.SpecificationDetail</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--comment-->
+<div class="container mb-2">
+    <div class="comments_box">
+        <h3>@Model.Count() Bình luận</h3>
+        @foreach(var cm in Model)
+        {
+            if (cm.ReplyComment == null)
+            {
+                <div class="comment_list" data-comment-id="@cm.CommentId">
+                    <div class="comment_thumb">
+                        <img src="/images/blog/comment3.png" alt="">
+                    </div>
+                    <div class="comment_content">
+                        <div class="comment_meta">
+                            <h5><a href="#">@cm.FirstName</a></h5>
+                            <span>@cm.CreateAt</span>
+                        </div>
+                        <p>@cm.CommentContent</p>
+                        <div class="comment_reply">
+                            @if (accountSession != null)
+                            {
+                                <button class="btn btn-primary key" type="button" onclick="ReplyComment(@cm.CommentId)">Trả lời</button>
+                                if (cm.UserId.Equals(accountSession.UserId))
+                                {
+                                    <button class="btn btn-danger" type="button" onclick="RemoveComment(@cm.CommentId)">Xóa</button>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+                foreach (var reply in Model.Where(p => p.ReplyComment != null).ToList())
+                {
+                    if (cm.CommentId.Equals(reply.ReplyComment))
+                    {
+                        <div class="comment_list list_two" data-comment-id="@reply.CommentId">
+                            <div class="comment_thumb">
+                                <img src="/images/blog/comment3.png" alt="">
+                            </div>
+                            <div class="comment_content">
+                                <div class="comment_meta">
+                                <h5><a href="#">@reply.FirstName</a></h5>
+                                    <span>@reply.CreateAt</span>
+                                </div>
+                                <p>@reply.CommentContent</p>
+                                <div class="comment_reply">
+                                @if (accountSession != null)
+                                {
+                                    if (reply.UserId.Equals(accountSession.UserId))
+                                    {
+                                        <button class="btn btn-danger" type="button" onclick="RemoveComment(@reply.CommentId)">Xóa</button>
+                                    }
+                                }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+        }
+        <div id="commentsSection"></div>
+    </div>
+   
+    <div class="comments_form">
+        <h3>Bình luận </h3>
+        <form id="commentForm">
+            <div class="row">
+                <div class="col-12">
+                    <label for="review_comment">Nội dung bình luận</label>
+                    <textarea id="commentContent" placeholder="@(accountSession!=null ? "Nhập nội dung bình luận vào đây ...." : "Vui lòng đăng nhập để sử dụng chức năng này !")" @(accountSession != null ? "" : "disabled")></textarea>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div id="replycm"></div>
+                    <input type="hidden" id="replyComment" value="0"/>
+                </div>
+            </div>
+            <button id="submitComment" class="button" type="submit">Đăng</button>
+            <button class="button" type="button" onclick="location.reload()">Reset form</button>
+        </form>
+    </div>
+</div>
+<section class="shipping_area">
+    <div class="container">
+        <div class=" row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping1.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>Free Shipping</h2>
+                        <p>Free shipping on all US order</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping2.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>Support 24/7</h2>
+                        <p>Contact us 24 hours a day</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping3.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>100% Money Back</h2>
+                        <p>You have 30 days to Return</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping4.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>Payment Secure</h2>
+                        <p>We ensure secure payment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+    <script type="text/javascript">
+    // Truyền dữ liệu từ Razor vào biến JavaScript
+     var checkss = @Html.Raw(checkSession ? "true" : "false");
+    var checkuser = '@checkusr';
+
+    const connection = new signalR.HubConnectionBuilder().withUrl("/commentHub").build();
+    connection.on("ReceiveComment", function (comment) {
+        const replyToCommentId = comment.replyComment;
+       
+            // Nếu đây là một bình luận trả lời
+        if (replyToCommentId !== null && replyToCommentId !== 0) {
+            const parentComment = document.querySelector(`[data-comment-id='${replyToCommentId}']`);
+            console.log(comment.userId);
+            const replyCommentList = `
+                <div class="comment_list list_two" data-comment-id="${comment.commentId}">
+                    <div class="comment_thumb">
+                        <img src="/images/blog/comment3.png" alt="">
+                    </div>
+                    <div class="comment_content">
+                        <div class="comment_meta">
+                            <h5><a href="#">${comment.firstName}</a></h5>
+                            <span>${new Date(comment.createAt).toLocaleString()}</span>
+                        </div>
+                        <p>${comment.commentContent}</p>
+                        <div class="comment_reply">
+                                ${(checkss == true && checkuser == comment.userId) ? `<button class="btn btn-danger" type="button" onclick="RemoveComment(${comment.commentId})">Xóa</button>` : ``}
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Chèn bình luận trả lời ngay sau bình luận gốc
+            parentComment.insertAdjacentHTML('afterend', replyCommentList);
+        } else {
+            // Nếu đây là một bình luận mới
+            const commentsSection = document.getElementById("commentsSection");
+            const commentList = `
+        <div class="comment_list" data-comment-id="${comment.commentId}">
+            <div class="comment_thumb">
+                <img src="/images/blog/comment3.png" alt="">
+            </div>
+            <div class="comment_content">
+                <div class="comment_meta">
+                    <h5><a href="#">${comment.firstName}</a></h5>
+                    <span>${new Date(comment.createAt).toLocaleString()}</span>
+                </div>
+                <p>${comment.commentContent}</p>
+                <div class="comment_reply">
+                    ${checkss == true ? `<button class="btn btn-primary" type="button" onclick="ReplyComment(${comment.commentId})">Trả lời</button>
+                        <button class="btn btn-danger" type="button" onclick="RemoveComment(${comment.commentId})">Xóa</button>
+                    ` : ``}
+                </div>
+            </div>
+        </div>
+    `;
+            commentsSection.innerHTML += commentList;
+        }
+        document.getElementById("commentContent").value = "";
+    });
+
+    connection.start().catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    document.getElementById("commentForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const content = document.getElementById("commentContent").value;
+        const productId = @product.ProductId;
+        const replyComment = document.getElementById('replyComment').value;
+
+        fetch(`/api/comments/addcomment/${productId}&${content}&${replyComment}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(response => response.json())
+            .then(comment => {
+                ReplyComment(0);
+                document.getElementById("commentContent").value = "";
+            }).catch(error => console.error("Error:", error));
+    });
+
+    function ReplyComment(idComment) {
+        document.getElementById('replyComment').value = idComment;
+        var reply = document.getElementById('replycm');
+        if (idComment ==0) {
+            reply.innerHTML = `<label style="color:red;display:none;">Trả lời bình luận: <span>${idComment}</span></label>`;
+        } else {
+            reply.innerHTML = `<label style="color:red;display:block;">Trả lời bình luận: <span>${idComment}</span></label>`;
+
+        }
+    }
+    function RemoveComment(idComment) {
+        console.log("xyz" + idComment);
+        fetch(`/api/comments/deletecomment/${idComment}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success){
+                location.reload();
+            }
+        }).catch(error => console.error("Error"));
+    }
+    function AddCart(id, quantity) {
+        fetch(`/api/shoppingcart/insert/${id}&${quantity}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: data.message,
+                        showConfirmButton: false,
+                        timer: 800
+                    }).then(result => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            location.reload(true);
+                        }
+                    })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+</script>

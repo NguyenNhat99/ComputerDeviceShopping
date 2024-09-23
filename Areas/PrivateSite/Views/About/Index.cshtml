@@ -1,0 +1,59 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.Common;
+@model ComputerDeviceShopping.Models.About
+@{
+    ViewData["Title"] = "Cài đặt thông tin website";
+    Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Cài đặt thông tin website</h5>
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("InsertAndUpdate", "About", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            @Html.TextBoxFor( p => p.Email,new{@class="form-control", placeholder="Nhập vào địa chỉ Email ... ", type="email" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Giới thiệu về website</label>
+                            @Html.TextAreaFor(p => p.Introduce,new{@class="form-control",placeholder="Nhập vào thông tin giới thiệu website ... "})
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Địa chỉ nhận hàng</label>
+                            @Html.TextBoxFor(p => p.AboutAddress, new { @class = "form-control", placeholder = "Nhập vào địa chỉ nhận hàng cho shipper" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            @Html.TextBoxFor(p => p.Phone, new { @class = "form-control", placeholder = "Nhập vào số điện thoại ... " })
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Đường dẫn Facebook</label>
+                            @Html.TextBoxFor(p => p.FacebookLink, new { @class = "form-control", placeholder = "Đường dẫn facebook ..."})
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Đường dẫn Instagram</label>
+                            @Html.TextBoxFor(p => p.InstagramLink, new { @class = "form-control", placeholder = "Đường dẫn Instagram ..." })
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Đường dẫn Youtube</label>
+                            @Html.TextBoxFor(p => p.YoutubeLink, new { @class = "form-control", placeholder = "Đường dẫn youtube ... " })
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Đường dẫn Twitter</label>
+                            @Html.TextBoxFor(p => p.TwitterLink, new { @class = "form-control", placeholder = "Đường dẫn twitter ..." })
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Đường dẫn kết nối messager facebook</label>
+                            @Html.TextBoxFor(p => p.UrlConnectMessager, new { @class = "form-control", placeholder = "Đường dẫn kết nối messager facebook ... " })
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

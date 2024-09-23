@@ -1,0 +1,200 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Slider
+@{
+    ViewData["Title"] = "Slider";
+    Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
+    var slider = ViewData["Slider"] as List<Slider>;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold mb-4">Thêm mã giảm giá</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            @using (Html.BeginForm("Slider", "SettingSite", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <p style="color:green; display:none;" id="notification_update"></p>
+                                <div class="mb-3">
+                                    <input type="hidden" id="idSlide" name="SlideId"/>
+                                    <label class="form-label">Tiêu đề slide</label>
+                                    @* @Html.TextBoxFor(d => d.SliderTitle, new { @class = "form-control", placeholder = "Nhập vào tiêu đề slide ...", id = "SliderTitle", required = "required" }) *@
+                                    <input type="text" class="form-control" placeholder="Nhập vào tiêu đề slide ..." name="SliderTitle" id="SliderTitle" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tên sản phẩm</label>
+                                    @* @Html.TextBoxFor(d => d.ProductName, new { @class = "form-control", placeholder = "Nhập vào tên sản phẩm ....", id = "ProductName", required = "required" }) *@
+                                    <input type="text" class="form-control" placeholder="Nhập vào tên sản phẩm ..." name="ProductName" id="ProductName" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Đường dẫn sản phẩm</label>
+                                    @* @Html.TextBoxFor(d => d.ProductLink, new { @class = "form-control", placeholder = "Nhập vào đường dẫn của sản phẩm ...", id = "ProductLink", required = "required" }) *@
+                                    <input type="text" class="form-control" placeholder="Nhập vào đường dẫn của sản phẩm ..." name="ProductLink" id="ProductLink" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mô tả slide</label>
+                                    @* @Html.TextAreaFor(d => d.DescriptionSlide, new { @class = "form-control", placeholder = "Nhập vào mô tả slide ...", id = "DescriptionSlide", required = "required" }) *@
+                                    <textarea class="form-control" placeholder="Nhập vào mô tả slide ..." name="DescriptionSlide" id="DescriptionSlide" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Hình bài viết</label>
+                                    <div class="custom-file">
+                                        <input class="custom-file-input" id="imgArticle" type="file" name="image" onchange="previewImage(event)" />
+                                    </div>
+                                    <img src="" id="slideImage" style="max-height: 200px; max-width: 200px; display: block;" />
+                                    <div id="imagePreviewSingle" class="m-auto"></div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h5 class="card-title fw-600 mb-4">Danh sách bài viết</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            @using (Html.BeginForm("Slider", "SettingSite", FormMethod.Post))
+                            {
+                                <div class="searchForm">
+                                    <input class="form-control" name="name" placeholder="Tìm kiếm ..." />
+                                    <button type="submit" class="btn btn-default"><i class="ti ti-search"></i></button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-post text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">ID</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Tiêu đề slide</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Tên sản phẩm</h6>
+                                    </th>
+                                    <th>
+                                        <h6 class="fw-600 mb-0">Đường dẫn sản phẩm</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Lệnh</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var slide in slider)
+                                {
+                                    <tr>
+                                        <td><h6 class="fw-600 mb-0">@slide.SlideId</h6></td>
+                                        <td><h6 class="fw-600 mb-1">@slide.SliderTitle</h6></td>
+                                        <td><h6 class="fw-600 mb-1">@slide.ProductName</h6></td>
+                                        <td><h6 class="fw-600 mb-1"><a href="@slide.ProductLink">@slide.ProductLink</a></h6></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" onclick="Update(@slide.SlideId)">Sửa</button>
+                                            <button class="btn btn-danger" onclick='Delete(@slide.SlideId,"settingsiteslider")'>Xóa</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-tools p-5 pt-0 pb-0 m-auto" id="pagination">
+                    @{
+                        int prevPage = ViewBag.Page - 1;
+                        if (prevPage <= 0)
+                        {
+                            prevPage = 1;
+                        }
+                        int nextPage = ViewBag.Page + 1;
+                        if (nextPage > ViewBag.NoOfPages)
+                        {
+                            nextPage = ViewBag.NoOfPages;
+                        }
+                    }
+                    @if (slider.Count > 0)
+                    {
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Index","Vouchers",new {page=prevPage})">&laquo;</a></li>
+                            @for (int i = ViewBag.DisplayPage; i < ViewBag.NoOfPages; i++)
+                            {
+                                if (i + 1 == ViewBag.Page)
+                                {
+                                    <li class="page-item"><a href="@Url.Action("Index","Vouchers",new {page = i+1 })" class="active page-link">@(i + 1)</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a href="@Url.Action("Index","Vouchers",new {page = i+1 })" class="page-link">@(i + 1)</a></li>
+                                }
+                            }
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Index","Vouchers",new {page=nextPage})">&raquo;</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <h1 class="text-center">Không có slide</h1>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var dataURL = reader.result;
+            var output = document.getElementById('articleAvatarDetail');
+            output.src = dataURL;
+            output.style.display = 'block'; // Hiển thị hình ảnh khi đã có URL
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+    function Update(id) {
+        fetch(`/api/settingsite/updateslide/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('SliderTitle').value = data.data.sliderTitle;
+                    document.getElementById('ProductName').value = data.data.productName;
+                    document.getElementById('ProductLink').value = data.data.productLink;
+                    document.getElementById('DescriptionSlide').value = data.data.descriptionSlide;
+                    document.getElementById('idSlide').value = data.data.slideId;
+                    document.getElementById('slideImage').src = data.data.slideImage;
+                    
+                    var notificationUpdate = document.getElementById('notification_update');
+                    notificationUpdate.style.display = 'block';
+                    notificationUpdate.innerText = "Đang sửa mã: " + id;
+                } else {
+                    alert('Cập nhật thất bại');
+                }
+            })
+            .catch(error => {
+                alert("Error");
+            });
+    }
+</script>

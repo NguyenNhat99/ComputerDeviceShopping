@@ -1,0 +1,89 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Article
+@{
+
+    ViewData["Title"] = "Chi tiết bài viểt";
+    string avatarArticle = ViewBag.ArticleAvatar;
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Chi tiết bài viết</h5>
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("Insert", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="mb-3">
+                            <p style="color:green;">Đang xem chi tiết bài viết: #@Model.ArticleId</p>
+                            <input value="@Model.ArticleId" class="form-control" name="ArticleId" type="hidden"/>
+                            <p class="c-green" id="alert_Edit" style="font-weight:bold;"></p>
+                            <label class="form-label">Tên bài viết</label>
+                            <input name="ArticleName" value="@Model.ArticleName" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nội dung tóm tắt</label>
+                            <textarea class="form-control" name="SummaryContent">@Model.SummaryContent</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nội dung Chính</label>
+                            <textarea  class="form-control" id="mainContent" name="ArticleContent">@Model.ArticleContent</textarea>
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Hình bài viết</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputSingleFile" name="avatar">
+                            </div>
+                            <div id="imagePreviewSingle" height="300px" width="300px" class="m-auto"></div>
+                            @if (avatarArticle != null)
+                            {
+                                <img src="@avatarArticle" height="150px" width="150px" id="imagePreviewUpdate" title="Không có hình" />
+                            }
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label">Tài khoản đăng</label>
+                                <input class="form-control" type="text" value="@ViewBag.UserName" disabled />
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Thời gian đăng</label>
+                                <input type="text" class="form-control" value="@Model.CreateAt" disabled>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                      @*   <button type="button" class="btn btn-danger mt-2" onclick='Delete(@Model.ArticleId,"articles")'>Xóa</button> *@
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.tiny.cloud/1/b74ahe4e18x18qxt2o4w63leenr4w5976k1r1wk915ugvr97/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#mainContent',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+    // ảnh đại diện sản phẩm
+    document.getElementById('inputSingleFile').addEventListener('change', function () {
+        var imagePreviewUpdate = document.getElementById('imagePreviewUpdate');
+        imagePreviewUpdate.style.display = "none";
+        var file = this.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imagePreview = document.getElementById('imagePreviewSingle');
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '20%';
+                imagePreview.innerHTML = '';
+                imagePreview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>

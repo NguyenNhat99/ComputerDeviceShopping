@@ -1,0 +1,255 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.Common;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var products = ViewData["Products"] as List<Product>;
+    var brands = ViewData["Brands"] as List<Brand>;
+    var categories = ViewData["Categories"] as List<Category>;
+}
+<style>
+    /* card */
+    .dress-card-img-top {
+        width: 100%;
+        border-radius: 7px 7px 0 0;
+    }
+
+    .dress-card-body {
+        padding: 1rem;
+        background: #fff;
+        border-radius: 0 0 7px 7px;
+    }
+    .dress-card-crossed {
+        text-decoration: line-through;
+    }
+
+    .dress-card-price {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .dress-card-off {
+        color: red;
+    }
+
+    .dress-card-para {
+        margin-bottom: 0.2rem;
+        font-size: 1.0rem;
+        margin-bottom: 0rem;
+    }
+
+    .dress-card {
+        border-radius: 14px;
+    }
+
+    .dress-card-heart {
+        font-size: 1em;
+        color: #DB2763;
+        margin: 4.5px;
+        position: absolute;
+        left: 4px;
+        top: 0px;
+    }
+
+    .surprise-bubble {
+        position: absolute;
+        bottom: 12rem;
+        right: 2rem;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        padding: 1rem;
+        color: white;
+        -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+        pointer-events:cursor;
+    }
+    .surprise-bubble:hover {
+        border-radius: 999rem;
+        padding: 1rem;
+        width: 15%;
+        height: 30px;
+        background: #DB2763;
+        color: white;
+        -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    .surprise-bubble:hover .fa-heart{
+        color:#fff;
+    }
+    .card-button {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 15px;
+        padding: 9px;
+    }
+    .card-button a {
+        text-decoration: none;
+    }
+
+    .card-button-inner {
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .bag-button {
+        background: #3E51EB;
+        color: white;
+    }
+
+    .bag-button:hover {
+        border: 1px solid #3E51EB;
+        background-color:#fff;
+        transition: 0.3s ease-in-out;
+    }
+
+    .bag-button:hover img {
+        filter: brightness(0) saturate(100%) invert(34%) sepia(70%) saturate(448%) hue-rotate(177deg) brightness(97%) contrast(98%);
+    }
+
+    .detail-button {
+        border: 1px solid #3E51EB;
+        color: #3E51EB;
+    }
+    .detail-button:hover{
+        color:#fff;
+        background-color: #3E51EB;
+        transition: 0.3s ease-in-out;
+    }
+
+</style>
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li>Sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!--blog body area start-->
+<div class="blog_details mt-60">
+    <div class="container">
+        <div class="row">
+             <div class="col-lg-3 col-md-12">
+                <div class="blog_sidebar_widget">
+                    <div class="widget_list widget_search">
+                        <h3>Tìm kiếm</h3>
+                        @using (Html.BeginForm("Index", "Shopping"))
+                        {
+                            <input placeholder="Tìm kiếm ..." name="name" type="text">
+                            <button type="submit">Tìm</button>
+                        }
+                    </div>
+                    <div class="widget_list widget_post">
+                        <h3 >Loại sản phẩm</h3>
+
+                        @foreach(var category in categories)
+                        {
+                            <div class="post_wrapper p-2">
+                                <div class="post_info">
+                                    <h3><a href="@Url.Action("Index","Shopping",new{category = category.CategoryId})">@category.CategoryName</a></h3>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="widget_list widget_tag">
+                        <h3>Hãng sản xuất</h3>
+                        <div class="tag_widget">
+                            <ul>
+                                @foreach(var brand in brands)
+                                {
+                                    <li class="active"><a href='@Url.Action("Index","Shopping",new{brand = brand.BrandId})'>@brand.BrandName</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row ">
+                    @foreach(var product in products)
+                    {
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <div class="dress-card">
+                                <div class="dress-card-head">
+                                    <img class="dress-card-img-top" style="height:283px; width:283px;"  src="@product.Avatar" alt="">
+                                    <button onclick="AddWishList(@product.ProductId)" style="border:none"  class="surprise-bubble">
+                                        <span class="dress-card-heart">
+                                            <i class="fa fa-heart"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="dress-card-body">
+                                    <h4 class="dress-card-title">@product.ProductName</h4>
+                                    <p class="dress-card-para"><span class="dress-card-price">@ConvertHelper.ConvertToVND(product.Price??0)  &ensp;</span></p>
+                                    <div class="row">
+                                        <div class="col-md-6 card-button"><button onclick="AddCart(@product.ProductId,1)" style="width:50%; border:none;"><div class="card-button-inner bag-button"><img src="/images/plsite/shopping-bag.png"  alt=""></div></button></div>
+                                        <div class="col-md-6 card-button"><a href="@Url.Action("Detail","Shopping",new{id = product.ProductId})"><div class="card-button-inner detail-button">Chi tiết</div></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--blog section area end-->
+<!--blog pagination area start-->
+<div class="blog_pagination">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="pagination">
+                    @{
+                        int prevPage = ViewBag.Page - 1;
+                        if (prevPage <= 0)
+                        {
+                            prevPage = 1;
+                        }
+                        int nextPage = ViewBag.Page + 1;
+                        if (nextPage > ViewBag.NoOfPages)
+                        {
+                            nextPage = ViewBag.NoOfPages;
+                        }
+                    }
+                    @if (categories.Count > 0)
+                    {
+                        <ul>
+                            <li class=""><a class="" href="@Url.Action("Index","Shopping",new {page=prevPage})">&laquo;</a></li>
+                            @for (int i = ViewBag.DisplayPage; i < ViewBag.NoOfPages; i++)
+                            {
+                                if (i + 1 == ViewBag.Page)
+                                {
+                                    <li class="current"><a href="@Url.Action("Index","Shopping",new {page = i+1 })" class="">@(i + 1)</a></li>
+                                }
+                                else
+                                {
+                                    <li class=""><a href="@Url.Action("Index","Shopping",new {page = i+1 })" >@(i + 1)</a></li>
+                                }
+                            }
+                            <li class="next"><a class="" href="@Url.Action("Index","Shopping",new {page=nextPage})">&raquo;</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <h1 class="text-center">Sản phẩm này hiện tại không có</h1>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--blog pagination area end-->
+
+

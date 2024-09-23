@@ -1,0 +1,51 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Article
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li><a href="@Url.Action("Index","Blog")">Bài viết</a></li>
+                        <li>Chi tiết bài viết</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog_details mt-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <div class="blog_wrapper">
+                    <article class="single_blog">
+                        <figure>
+                            <div class="post_header">
+                                <h3 class="post_title">@Model.ArticleName</h3>
+                                <div class="blog_meta">
+                                    <span class="author">Người đăng : <a href="#">@ViewBag.Writer</a> / </span>
+                                    <span class="post_date"><a href="#">@Model.CreateAt</a></span>
+                                </div>
+                            </div>
+                            <div class="blog_thumb">
+                                <i>@Model.SummaryContent</i>
+                            </div>
+                            <figcaption class="blog_content">
+                                <div class="post_content">
+                                    <p>@Html.Raw(Model.ArticleContent)</p>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+            </div>
+            @await Component.InvokeAsync("SidebarBlog")
+        </div>
+    </div>
+</div>

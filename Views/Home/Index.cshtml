@@ -1,0 +1,329 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.Common;
+@{
+    ViewData["Title"] = "Trang chủ";
+    var slideList = ViewData["Slider"] as List<Slider>;
+    var articles = ViewData["Articles"] as List<Article>;
+    var accountPost = ViewData["AccountPost"] as List<Account>;
+    var productList = ViewData["ProductList"] as List<Product>;
+    var products = ViewData["Products"] as List<Product>;
+}
+<style>
+    .dress-card-img-top {
+        width: 100%;
+        border-radius: 7px 7px 0 0;
+    }
+
+    .dress-card-body {
+        padding: 1rem;
+        background: #fff;
+        border-radius: 0 0 7px 7px;
+    }
+
+    .dress-card-crossed {
+        text-decoration: line-through;
+    }
+
+    .dress-card-price {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .dress-card-off {
+        color: red;
+    }
+
+    .dress-card-para {
+        margin-bottom: 0.2rem;
+        font-size: 1.0rem;
+        margin-bottom: 0rem;
+    }
+
+    .dress-card {
+        border-radius: 14px;
+    }
+
+    .dress-card-heart {
+        font-size: 1em;
+        color: #DB2763;
+        margin: 4.5px;
+        position: absolute;
+        left: 4px;
+        top: 0px;
+    }
+
+    .surprise-bubble {
+        position: absolute;
+        bottom: 12rem;
+        right: 2rem;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        padding: 1rem;
+        color: white;
+        -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+        pointer-events: cursor;
+    }
+
+        .surprise-bubble:hover {
+            border-radius: 999rem;
+            padding: 1rem;
+            width: 15%;
+            height: 30px;
+            background: #DB2763;
+            color: white;
+            -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+            .surprise-bubble:hover .fa-heart {
+                color: #fff;
+            }
+
+    .card-button {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 15px;
+        padding: 9px;
+    }
+
+        .card-button a {
+            text-decoration: none;
+        }
+
+    .card-button-inner {
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .bag-button {
+        background: #3E51EB;
+        color: white;
+    }
+
+        .bag-button:hover {
+            border: 1px solid #3E51EB;
+            background-color: #fff;
+            transition: 0.3s ease-in-out;
+        }
+
+            .bag-button:hover img {
+                filter: brightness(0) saturate(100%) invert(34%) sepia(70%) saturate(448%) hue-rotate(177deg) brightness(97%) contrast(98%);
+            }
+
+    .detail-button {
+        border: 1px solid #3E51EB;
+        color: #3E51EB;
+    }
+
+        .detail-button:hover {
+            color: #fff;
+            background-color: #3E51EB;
+            transition: 0.3s ease-in-out;
+        }
+
+</style>
+<section class="slider_section d-flex align-items-center" data-bgimg="/images/plsite/slider/slider3.jpg">
+    <div class="slider_area owl-carousel">
+        @foreach(var slide in slideList)
+        {
+            <div class="single_slider d-flex align-items-center">
+                <div class="container">
+                    <div class="row mt-5">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="slider_content">
+                                <h1>@slide.SliderTitle</h1>
+                                <h2>@slide.ProductName</h2>
+                                <p>@slide.DescriptionSlide</p>
+                                <a class="button" href="@slide.ProductLink">Mua ngay</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <div class="slider_content">
+                                <img src="@slide.SlideImage" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</section>
+<section class="features-area pt-60 pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section-title">
+                    <h2>Chính sách</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                <div class="single-features">
+                    <img src="/images/plsite/icon/1.png" alt="">
+                    <h3>Giao hàng miễn phí</h3>
+                    <p>Đối với các đơn nằm ở vị trí thành phố sẽ được miễn 100% phí giao hàng</p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                <div class="single-features">
+                    <img src="/images/plsite/icon/2.png" alt="">
+                    <h3>Bảo mật thông tin</h3>
+                    <p>Các thông tin của khách hàng sẽ được bảo mật 100% khi mua hàng tại shop</p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                <div class="single-features">
+                    <img src="/images/plsite/icon/3.png" alt="">
+                    <h3>Đơn hàng</h3>
+                    <p>Theo dõi thông tin đơn hàng một cách dễ dàng, nhanh chóng tại website</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="blog_details mt-60">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section-title">
+                    <h2>Sản phẩm </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var product in productList)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="dress-card">
+                        <div class="dress-card-head">
+                            <img class="dress-card-img-top" style="height:283px; width:283px;" src="@product.Avatar" alt="">
+                            <button onclick="AddWishList(@product.ProductId)" style="border:none" class="surprise-bubble">
+                                <span class="dress-card-heart">
+                                    <i class="fa fa-heart"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dress-card-body">
+                            <h4 class="dress-card-title">@product.ProductName</h4>
+                            <p class="dress-card-para"><span class="dress-card-price">@ConvertHelper.ConvertToVND(product.Price ?? 0)  &ensp;</span></p>
+                            <div class="row">
+                                <div class="col-md-6 card-button"><button onclick="AddCart(@product.ProductId,1)" style="width:50%; border:none;"><div class="card-button-inner bag-button"><img src="/images/plsite/shopping-bag.png" alt=""></div></button></div>
+                                <div class="col-md-6 card-button"><a href="@Url.Action("Detail","Shopping",new{id = product.ProductId})"><div class="card-button-inner detail-button">Chi tiết</div></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div style="text-align:center;margin:auto; font-size:18px;">
+            <a style="text-decoration:underline !important; " href="@Url.Action("Index","Shopping")">Xem thêm</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+<section class="pt-60">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section-title">
+                    <h2>Bài viết</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row blog_wrapper">
+            @foreach(var item in articles)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <article class="single_blog mb-60">
+                        <figure>
+                            <div class="blog_thumb">
+                                <a href="blog-details.html"><img class="imgBlog" style="height:270px; " src="@item.Avatar" alt=""></a>
+                            </div>
+                            <figcaption class="blog_content">
+                                <h3><a href="@Url.Action("Detail","Blog",new{id = item.ArticleId})">@item.ArticleName</a></h3>
+                                <div class="blog_meta">
+                                    @if (accountPost != null)
+                                    {
+                                        @foreach (var acc in accountPost)
+                                        {
+                                            if (acc.UserId.Equals(item.UserId))
+                                            {
+                                                <span class="author">Người đăng : <a href="#"></a>@acc.LastName @acc.FirstName /  </span>
+                                            }
+                                        }
+                                    }
+                                    <span class="post_date">Ngày đăng : <a href="#">@item.CreateAt</a></span>
+                                </div>
+                                <div class="blog_desc">
+                                    <p style="text-align: justify;">@(item.SummaryContent.Substring(0, 170) + "...")</p>
+                                </div>
+                                <footer class="readmore_button">
+                                    <a href='@Url.Action("Detail","Blog",new{id = item.ArticleId})'>Xem thêm</a>
+                                </footer>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+            }
+        </div>
+    </div>
+</section><!--/Blog-->
+<!--shipping area start-->
+<section class="shipping_area">
+    <div class="container">
+        <div class=" row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping1.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>Giao hàng</h2>
+                        <p>Miễn phí cho tất cả đơn hàng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping2.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>Hỗ trợ 24/7</h2>
+                        <p>Liên hệ với chúng tôi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping3.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>Hỗ trợ hoàn tiền</h2>
+                        <p>Hỗ trợ hoàn tiền trong 30 ngày đầu</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone">
+                        <img src="/images/plsite/about/shipping4.png" alt="">
+                    </div>
+                    <div class="shipping_content">
+                        <h2>Thanh toán</h2>
+                        <p>Bảo mật an toàn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--shipping area end-->

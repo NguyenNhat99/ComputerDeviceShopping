@@ -1,0 +1,179 @@
+﻿@using ComputerDeviceShopping.Models;
+@{
+    ViewData["Title"] = "FavouristList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var productList = ViewData["ProductList"] as List<Product>;
+    var wishList = ViewData["WishList"] as List<FavouriteList>;
+}
+
+<style>
+    .stat-box {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+    }
+
+    .date-picker input[type="date"] {
+        width: auto;
+    }
+
+    .order-list {
+        margin-top: 20px;
+    }
+
+    .order-item {
+        padding: 15px;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+    }
+
+        .order-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .text-danger {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .badge {
+        font-size: 0.875rem;
+    }
+
+    .text-muted {
+        font-size: 0.875rem;
+    }
+
+</style>
+<div class="container emp-profile">
+    @await Component.InvokeAsync("SidebarUserProfile")
+    <div class="col-md-8 p-0" style="margin-top:-20px;">
+        <div class="container">
+            <div class="order-list">
+                @foreach (var item in wishList)
+                {
+                    foreach(var product in productList)
+                    {
+                        if (product.ProductId.Equals(item.ProductId))
+                        {
+                            <div class="order-item card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <a href="@Url.Action("Detail","Shopping",new{id = product.ProductId})"><img src="@product.Avatar" class="img-fluid" alt="Product Image"></a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h5 class="card-title"><a href="@Url.Action("Detail","Shopping",new{id = product.ProductId})">@product.ProductName</a></h5>
+                                            <p class="card-text text-danger">@product.Price</p>
+                                        </div>
+                                        <div class="col-md-2 text-right">
+                                            <button class="btn btn-danger" onclick="DeleteItemFavouriteList(@item.FavouriteId)">Xóa</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div class="blog_pagination">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="pagination">
+                            @{
+                                int prevPage = ViewBag.Page - 1;
+                                if (prevPage <= 0)
+                                {
+                                    prevPage = 1;
+                                }
+                                int nextPage = ViewBag.Page + 1;
+                                if (nextPage > ViewBag.NoOfPages)
+                                {
+                                    nextPage = ViewBag.NoOfPages;
+                                }
+                            }
+                            @if (wishList.Count > 0)
+                            {
+                                <ul>
+                                    <li class=""><a class="" href="@Url.Action("WishList","UserProfile",new {page=prevPage})">&laquo;</a></li>
+                                    @for (int i = ViewBag.DisplayPage; i < ViewBag.NoOfPages; i++)
+                                    {
+                                        if (i + 1 == ViewBag.Page)
+                                        {
+                                            <li class="current"><a href="@Url.Action("WishList","UserProfile",new {page = i+1 })" class="">@(i + 1)</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class=""><a href="@Url.Action("WishList","UserProfile",new {page = i+1 })">@(i + 1)</a></li>
+                                        }
+                                    }
+                                    <li class="next"><a class="" href="@Url.Action("WishList","UserProfile",new {page=nextPage})">&raquo;</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <h1 class="text-center">Danh sách yêu thích trống</h1>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+<script>
+    function DeleteItemFavouriteList(id) {
+        // "api/userprofile/favouritelist/delete/{id}"
+            fetch(`/api/wishlist/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            position: "center-center",
+                            icon: "success",
+                            title: data.message,
+                            showConfirmButton: true,
+                            timer: 1500
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center-center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: true,
+                            timer: 1500
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    }
+                })
+                .catch(error => {
+                    alert("Error")
+                });
+}
+</script>
+

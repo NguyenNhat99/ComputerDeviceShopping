@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ComputerDeviceShopping.Models.Article>
+<div class="col-lg-3 col-md-12">
+    <div class="blog_sidebar_widget">
+        <div class="widget_list widget_search">
+            <h3>Tìm kiếm</h3>
+            @using (Html.BeginForm("Index","Blog",FormMethod.Post)){
+                <input placeholder="Tìm kiếm..." name="name" type="text">
+                <button type="submit">Tìm</button>
+            }
+        </div>
+        <div class="widget_list widget_post">
+            <h3>Bài viết phổ biến</h3>
+            @foreach (var at in Model)
+            {
+                <div class="post_wrapper">
+                    @* <div class="post_thumb">
+                        <a href="@Url.Action("Detail","Blog",new{id = at.ArticleId})"></a>
+                    </div> *@
+                    <div class="post_info">
+                        <h3><a href="@Url.Action("Detail","Blog",new{id = at.ArticleId})">@at.ArticleName</a></h3>
+                        <span>@at.CreateAt, lượt xem: @at.ArticleView </span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

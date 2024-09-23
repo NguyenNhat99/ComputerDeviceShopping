@@ -1,0 +1,197 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Account
+@{
+    ViewData["Title"] = "Thông tin người dùng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container emp-profile">
+        @await Component.InvokeAsync("SidebarUserProfile")
+        <div class="col-md-8">
+       
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    @using (Html.BeginForm("Index","UserProfile",FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" value="@Model.UserId" name="UserId"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Tên đăng nhập</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input  class="form-control" value="@Model.Username" disabled/>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" value="@Model.Email" disabled />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Thời gian tạo</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" value="@Model.CreateAt" disabled />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Họ</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" value="@Model.LastName" name="LastName" required />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Tên</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" value="@Model.FirstName" name="FirstName" required />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Số điện thoai</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" value="@Model.Phone" name="Phone" required />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Địa chỉ</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" value="@Model.DeliverAddress" name="DeliverAddress" />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Giới tính</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" name="Gender">
+                                    @if(Model.Gender == true)
+                                    {
+                                        <option value="true" selected>Nam</option>
+                                        <option value="false">Nữ</option>
+                                    }
+                                    else{
+                                        <option value="true" >Nam</option>
+                                        <option value="false" selected>Nữ</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Lưu</button>
+                    }
+                </div>
+          
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form id="form_cpw">
+                        <div class="row mt-2">
+                        <input type="hidden" id="iduser" value="@Model.UserId" />
+                            <div class="col-md-6">
+                                <label>Mật khẩu cũ</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" id="currentPassword"/>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Mật khẩu mới</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" id="newPassword" />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label>Xác nhận mật khẩu mới</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" id="confirmNewPassword"/>
+                            </div>
+                        </div>
+                     <button type="button" onclick="ChangePassword()" class="btn btn-success">Lưu</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // location.reload(true);
+    // console.log("abc");
+  
+    function ChangePassword() {
+        var id = document.getElementById('iduser').value;
+        var currentPassword = document.getElementById('currentPassword').value;
+        var newPassword = document.getElementById('newPassword').value;
+        var confirmNewPassword = document.getElementById('confirmNewPassword').value;
+        console.log("abc")
+        if (currentPassword.lenght == '' || newPassword == '' || confirmNewPassword == '') {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Không được để trống",
+                showConfirmButton: true,
+                timer: 1500
+            });
+            return;
+        } else if (newPassword !== confirmNewPassword) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Mật khẩu mới không khớp",
+                showConfirmButton: true,
+                timer: 1500
+            });
+            return;
+        }
+
+        fetch(`/api/userprofile/changepassword/${id}&${currentPassword}&${newPassword}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: data.message,
+                        showConfirmButton: true,
+                        timer: 1500
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                            location.reload(true);
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: data.message,
+                        showConfirmButton: true,
+                        timer: 1500
+                    }).then((result) => {
+                        location.reload(true);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+</script>
+

@@ -1,0 +1,172 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.Common;
+@model ComputerDeviceShopping.Models.Order
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var customerOrder = ViewData["InformationOrder"] as Customer;
+    var items = ViewData["ItemOrderList"] as List<OrdersDetail>;
+    var products = ViewData["ProductList"] as List<Product>;
+    double totalPrice = 0;
+}
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li><a href="@Url.Action("Index","UserProfile")">Thông tin người dùng</a></li>
+                        <li><a href="@Url.Action("Order","UserProfile")">Đơn hàng</a></li>
+                        <li>Chi tiết đơn hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Checkout_section mt-60">
+    <div class="container">
+        <div class="checkout_form">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <h3> Đơn hàng của bạn </h3>
+                    <div class="order_table table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in items)
+                                {
+                                    @foreach (var product in products)
+                                    {
+                                        if (product.ProductId.Equals(item.ProductId))
+                                        {
+                                            <tr>
+                                                <td> @product.ProductName <strong> × @item.Quantity</strong></td>
+                                                <td> @ConvertHelper.ConvertToVND((product.Price * item.Quantity)??0)</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Áp dụng mã giảm giá: </th>
+                                    <td>@ViewBag.Discount %</td>
+                                </tr>
+                                <tr class="order_total">
+                                    <th>Tổng đơn hàng</th>
+                                    <td>@ConvertHelper.ConvertToVND(Model.TotalPrice??0)</td>
+                                </tr>
+                                <tr class="">
+                                    <th>Trạng thái đơn hàng</th>
+                                    <td>
+                                        <span class="badge @OrderStatusHelper.GetBadgeClassById(Model.StatusId??0)">@OrderStatusHelper.getNameStatusById(Model.StatusId ?? 0)</span>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    @using (Html.BeginForm("", "", FormMethod.Post))
+                    {
+                        <h3>Thông tin nhận hàng</h3>
+                        <div class="row">
+                            <div class="col-lg-6 mb-20">
+                                <label>Họ <span>*</span></label>
+                                <input type="text" value='@customerOrder.LastName' name="LastName" placeholder="Nhập họ ..." disabled>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <label>Tên  <span>*</span></label>
+                                <input type="text" value='@customerOrder.FirstName' name="FirstName" placeholder="Nhập tên ..." disabled>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <label>Số điện thoại<span>*</span></label>
+                                <input type="text" value="@customerOrder.Phone" name="Phone" placeholder="Nhập số điện thoại liên lạc ..."  disabled>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <label> Địa chỉ Email<span>*</span></label>
+                                <input type="text" value="@customerOrder.Email" name="Email" placeholder="Nhập địa chỉ Email để nhận hóa đơn ...."  disabled>
+                            </div>
+                            <div class="col-12 mb-20">
+                                <label>Địa chỉ nhận hàng  <span>*</span></label>
+                                <input placeholder="địa chỉ đầy đủ" value="@customerOrder.DeliverAddress" name="DeliverAddress" type="text" disabled>
+                            </div>
+                            <div class="col-12">
+                                <div class="order-notes">
+                                    <label for="order_note">Ghi chú</label>
+                                    <textarea id="order_note" rows="2" name="@Model.Note" placeholder="Ghi chú cho đơn hàng hoặc nhập địa chỉ rõ hơn tại đây ." disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="">
+                    <a class="btn btn-secondary" href="@Url.Action("Order","UserProfile")">Quay về</a>
+                    @if(Model.StatusId == 3)
+                    {
+                        <button class="btn btn-danger" onclick="CancelOrder(@Model.OrderId)">Hủy đơn hàng</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function CancelOrder(id) {
+        Swal.fire({
+            title: "Bạn chắc chắn?",
+            text: "Bạn sẽ không thể khôi phục khi đã hủy",
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Đóng",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Hủy đơn"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/api/userprofile/orderdetail/cancel/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "success",
+                                title: data.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "error",
+                                title: data.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        alert("Error")
+                    });
+            }
+        });
+    }
+</script>

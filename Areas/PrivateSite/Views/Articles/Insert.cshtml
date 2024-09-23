@@ -1,0 +1,80 @@
+﻿@using ComputerDeviceShopping.Models;
+@model ComputerDeviceShopping.Models.Article
+@{
+    
+    ViewData["Title"] = "Thêm bài viết";
+}
+<style>
+    .validation-summary-errors{
+        color:red;
+    }
+</style>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Thông tin bài viết</h5>
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("Insert", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="mb-3">
+                            <p class="c-green" id="alert_Edit" style="font-weight:bold;"></p>
+                            <label class="form-label">Tên bài viết</label>
+                            @Html.TextBoxFor(avm => avm.ArticleName, new { @class = "form-control", placeholder = "Nhập tên bài viết", required = "required" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nội dung tóm tắt</label>
+                            @Html.TextAreaFor(avm => avm.SummaryContent, new { @class = "form-control", placeholder = "Nhập nội dung tóm tắt", required = "required" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nội dung Chính</label>
+                            <textarea id="maincontent" name="ArticleContent" class="form-control"></textarea>
+                            @* @Html.TextAreaFor(avm => avm.ArticleContent, new { @class = "form-control", placeholder = "Nhập nội dung chính", id = "editor", required = "required" }) *@
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Hình bài viết</label>
+                            <div class="custom-file">
+                                <input class="custom-file-input" id="imgArticle" type="file" name="avatar" onchange="previewImage(event)" />
+                            </div>
+                            <img src="@ViewBag.ArticleAvatar" id="articleAvatarDetail" style="max-height: 200px; max-width: 200px; display: block;" />
+                            <div id="imagePreviewSingle" class="m-auto"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label">Tài khoản đăng</label>
+                                <input class="form-control" type="text" value="@ViewBag.UserName" disabled />
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Thời gian đăng</label>
+                                <input type="text" class="form-control"value="@DateTime.Now" name="CreateAt" disabled>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.tiny.cloud/1/b74ahe4e18x18qxt2o4w63leenr4w5976k1r1wk915ugvr97/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#maincontent',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var dataURL = reader.result;
+            var output = document.getElementById('articleAvatarDetail');
+            output.src = dataURL;
+            output.style.display = 'block'; // Hiển thị hình ảnh khi đã có URL
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

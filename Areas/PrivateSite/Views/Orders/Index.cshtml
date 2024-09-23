@@ -1,0 +1,180 @@
+﻿@using ComputerDeviceShopping.Models;
+@using ComputerDeviceShopping.Common;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
+    var orders1 = ViewData["Orders1"] as List<Order>;
+    var orderStatus = ViewData["OrderStatus"] as List<OrderStatus>;
+    string notification = ViewBag.updateItem;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h5 class="card-title fw-600 mb-4">Lọc danh sách</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <select class="form-control" id="statusSelect" name="listStatus">
+                                <option value="0">Tất cả</option>
+                                @foreach(var status in orderStatus)
+                                {
+                                    <option value="@status.OrderStatusId">@status.OrderStatusName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h5 class="card-title fw-600 mb-4">Danh sách đơn hàng</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <form id="findOrderForm">
+                                <div class="searchForm">
+                                    <input class="form-control" id="searchNameInput" name="name" placeholder="Nhập vào mã khách hàng hoặc đơn hàng để tìm kiếm ..." />
+                                    <button type="submit" id="btnSubmit_search" class="btn btn-default"><i class="ti ti-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-post text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">ID</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Khách hàng</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Thời gian</h6>
+                                    </th>
+                                    <th>
+                                        <h6 class="fw-600 mb-0">Áp dụng voucher</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Lệnh</h6>
+                                    </th>
+                                    <th>
+                                        <h6 class="fw-600 mb-0">Trạng thái</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_orders">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-tools p-5 pt-0 pb-0 m-auto">
+                    <ul class="pagination pagination-sm" id="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    var valueS = "none";
+    var selectedStatusGlobal = 0;
+    var currentPage = 1;
+    $(document).ready(function () {
+        loadData(1, valueS, selectedStatusGlobal);
+        $('#statusSelect').change(function () {
+            var selectedStatus = $(this).val();
+            selectedStatusGlobal = selectedStatus;
+            loadData(1, valueS, selectedStatus);
+        });
+        $('#findOrderForm').submit( function (event) {
+            event.preventDefault(); // Chặn hành động submit mặc định
+            var valueSearch = document.getElementById('searchNameInput').value;
+            valueS = (valueSearch.trim() === "" ? "none" : valueSearch.trim());
+            loadData(1, `${valueSearch}`, selectedStatusGlobal);
+        });
+        $('#searchNameInput').change(function () {
+            var valueSearch = document.getElementById('searchNameInput').value;
+            if (valueSearch.length < 1) {
+                loadData(1, "none", selectedStatusGlobal);
+            }
+        });
+    });
+    async function loadData(page, name, status) {
+        const url = `/api/privatesite/order/loaddata/${page}&${name}&${status}`;
+            const response = await fetch(url); // Đường dẫn API
+            const data = await response.json(); // Giả sử API trả về nhiều danh sách
+
+            // // Tách riêng từng danh sách
+            const orders = data.data.$values;
+
+            // Vị trí sẽ chèn dữ liệu vào bảng đơn hàng
+            const ordersBody = document.getElementById('tbody_orders');
+            ordersBody.innerHTML = ''; // Xóa nội dung cũ
+
+            // Lặp qua danh sách đơn hàng và tạo hàng trong bảng
+            orders.forEach(order => {
+                const row = `
+                <tr>
+                    <td><h6 class="fw-600 mb-0">${order.orderId}</h6></td>
+                    <td><h6 class="fw-600 mb-1">${order.customerId}</h6></td>
+                    <td><h6 class="fw-600 mb-1">${formatDate(order.createAt)}</h6></td>
+                    <td><h6 class="fw-600 mb-1">${order.voucherId ? 'có' : 'không'}</h6></td>
+                    <td>
+                        <a href="/privatesite/orders/detail?id=${order.orderId}" class="btn btn-primary">Chi tiết</a>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                                <span class="badge ${getBadgeClass(order.statusName)} rounded-3 fw-600">
+                                    ${order.statusName}
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                `;
+                ordersBody.innerHTML += row;
+            });
+        // Hiển thị pagination
+        const pagination = $('#pagination');
+        pagination.html('');
+        const prevPage = data.page > 1 ? data.page - 1 : 1;
+        const nextPage = data.page < data.noOfPages ? data.page + 1 : data.noOfPages;
+        pagination.append(`<li class="page-item"><a class="page-link" href="#" onclick='loadData(${prevPage}, "${name}", ${selectedStatusGlobal})'>&laquo;</a></li>`);
+
+        for (let i = data.displayPage; i < data.noOfPages; i++) {
+            const activeClass = (i+1) === data.page ? 'active' : '';    
+            pagination.append(`<li class="page-item ${activeClass}"><a class="page-link" href="#" onclick='loadData(${(i+1)},  "${name}", ${selectedStatusGlobal})'>${i + 1}</a></li>`);
+        }
+        pagination.append(`<li class="page-item"><a class="page-link" href="#" onclick='loadData(${nextPage}, "${name}", ${selectedStatusGlobal})'>&raquo;</a></li>`);
+    }
+
+
+    function formatDate(isoString) {
+        const date = new Date(isoString);
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Tháng trong JavaScript bắt đầu từ 0
+        const year = date.getFullYear();
+
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+
+        return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+    }
+
+    function getBadgeClass(statusName) {
+        switch (statusName) {
+            case 'Thành công':
+                return 'bg-success';
+            case 'Đã hủy':
+            case 'Thất bại':
+                return 'bg-danger';
+            case 'Đang vận chuyển':
+                return 'bg-primary';
+            default:
+                return 'bg-secondary';
+        }
+    }
+</script>
