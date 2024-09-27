@@ -6,8 +6,8 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
 {
 
     [Area("PrivateSite")]
-    //[CustomAuthentication]
-    //[CustomAuthorize("quản trị")]
+    [CustomAuthentication]
+    [CustomAuthorize("quản trị")]
 
 
     public class ManagementAccountController : Controller

@@ -12,6 +12,8 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
 
     [Area("PrivateSite")]
     [CustomAuthentication]
+    [CustomAuthorize("quản trị", "nhân viên")]
+
     public class ProductsController : Controller
     {
         private static ComputerDeviceDataContext _context = new ComputerDeviceDataContext();
@@ -368,7 +370,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             return File(output, "text/csv", "sample_products.csv");
         }
 
-
+        [CustomAuthorize("quản trị")]
         public IActionResult ProductsManagement(int page = 1, string name="")
         {
             check = true;

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
 {
     [Area("PrivateSite")]
+    [CustomAuthentication]
+    [CustomAuthorize("quản trị")]
     public class Membership : Controller
     {
         private static ComputerDeviceDataContext _context = new ComputerDeviceDataContext();

@@ -41,7 +41,6 @@ public partial class ComputerDeviceDataContext : DbContext
 
     public virtual DbSet<Image> Images { get; set; }
 
-    public virtual DbSet<Notification> Notifications { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
 
@@ -393,28 +392,7 @@ public partial class ComputerDeviceDataContext : DbContext
                 .HasConstraintName("FK_Images_Products");
         });
 
-        modelBuilder.Entity<Notification>(entity =>
-        {
-            entity.HasKey(e => e.NotificationId).HasName("PK__Notifica__20CF2E123727D7CF");
-
-            entity.Property(e => e.CreateAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.NotificationContent)
-                .HasMaxLength(4000)
-                .HasDefaultValue("");
-            entity.Property(e => e.NotificationTitle)
-                .HasMaxLength(2000)
-                .HasDefaultValue("");
-            entity.Property(e => e.UserId)
-                .HasMaxLength(15)
-                .IsUnicode(false);
-
-            entity.HasOne(d => d.User).WithMany(p => p.Notifications)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Notifications_Account");
-        });
+      
 
         modelBuilder.Entity<Order>(entity =>
         {

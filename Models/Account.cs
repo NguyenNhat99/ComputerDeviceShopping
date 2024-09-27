@@ -46,6 +46,5 @@ public partial class Account
 
     public virtual GroupAccount Group { get; set; } = null!;
 
-    public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
     public virtual MemberLevel Member { get; set; } = null!;
 }

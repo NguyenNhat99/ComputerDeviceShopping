@@ -143,6 +143,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             ViewBag.DisplayPage = pagVM.displayPage;
             ViewData["Articles"] = pagVM.data;
         }
+        [CustomAuthorize("quản trị")]
         public IActionResult ManagementArticles(int page = 1, string name = "")
         {
             check = true;

@@ -299,3 +299,4 @@ C:\Users\ADMIN\source\repos\ComputerDeviceShopping\ComputerDeviceShopping\bin\De
 C:\Users\ADMIN\source\repos\ComputerDeviceShopping\ComputerDeviceShopping\bin\Debug\net8.0\Microsoft.AspNetCore.Connections.Abstractions.dll
 C:\Users\ADMIN\source\repos\ComputerDeviceShopping\ComputerDeviceShopping\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Common.dll
 C:\Users\ADMIN\source\repos\ComputerDeviceShopping\ComputerDeviceShopping\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
+C:\Users\ADMIN\source\repos\ComputerDeviceShopping\ComputerDeviceShopping\obj\Debug\net8.0\ComputerDeviceShopping.sourcelink.json
