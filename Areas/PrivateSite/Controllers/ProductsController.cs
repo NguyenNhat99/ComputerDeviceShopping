@@ -40,100 +40,6 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             }
             return Redirect("Index");
         }
-        public IActionResult InsertTestNew()
-        {
-            UpdateInterface(null);
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> InsertTestNew(Product pro, IFormFile avatar, IEnumerable<IFormFile> images, List<SpectificationVM> specList)
-        {
-            if (pro.ProductId == null)
-            {
-                Product product = new Product()
-                {
-                    ProductId = CommonTools.RandomNumbers(9),
-                    ProductName = pro.ProductName,
-                    ProductDescription = pro.ProductDescription,
-                    DescriptionSummary = pro.DescriptionSummary,
-                    Price = pro.Price,
-                    Stock = pro.Stock,
-                    BrandId = pro.BrandId,
-                    CategoryId = pro.CategoryId,
-                };
-                product.Avatar = await CommonTools.SaveImage(avatar, "images", "products");
-
-                if (images != null && images.Any())
-                {
-                    foreach (var image in images)
-                    {
-                        Image img = new Image()
-                        {
-                            ProductId = product.ProductId,
-                            ImageUrl = await CommonTools.SaveImage(image, "images", "products")
-                        };
-                        _context.Images.Add(img);
-                    }
-                }
-                if (specList != null)
-                {
-                    foreach(var spec in specList)
-                    {
-                        var spectification = new Specification()
-                        {
-                            ProductId = product.ProductId,
-                            SpecificationLabel = spec.label,
-                            SpecificationDetail = spec.description,
-                        };
-                        _context.Specifications.Add(spectification);
-                    }
-                }
-                _context.Products.Add(product);
-                _context.SaveChanges();
-                return Redirect("Index");
-            }
-            else
-            {
-                var product = _context.Products.FirstOrDefault(d => d.ProductId.Equals(pro.ProductId));
-                if (product != null)
-                {
-                    product.ProductName = pro.ProductName;
-                    product.ProductDescription = pro.ProductDescription;
-                    product.DescriptionSummary = pro.DescriptionSummary;
-                    product.Price = pro.Price;
-                    product.Stock = pro.Stock;
-                    product.BrandId = pro.BrandId;
-                    if (avatar != null)
-                    {
-                        product.Avatar = await CommonTools.SaveImage(avatar, "images", "products");
-                    }
-                    if (images != null && images.Any())
-                    {
-                        var imagesProduct = _context.Images.Where(d => d.ProductId.Equals(product.ProductId)).ToList();
-                        if (imagesProduct.Count() > 0)
-                        {
-                            foreach (var image in imagesProduct)
-                            {
-                                CommonTools.DeleteImageFromDirectory(image.ImageUrl);
-                                _context.Images.Remove(image);
-                            }
-                        }
-                        foreach (var image in images)
-                        {
-                            Image img = new Image()
-                            {
-                                ProductId = product.ProductId,
-                                ImageUrl = await CommonTools.SaveImage(image, "images", "products")
-                            };
-                            _context.Images.Add(img);
-                        }
-                    }
-                }
-                _context.SaveChanges();
-                return Redirect("Index");
-            }
-        }
-        
         public IActionResult Insert()
         {
             UpdateInterface(null);
@@ -146,6 +52,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// <param name="avatar">Hình ảnh đại diện của sản phẩm</param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Insert(Product pro, IFormFile avatar, IEnumerable<IFormFile> images,List<SpectificationVM> spectificationList)
         {
             if (pro.ProductId == null)
@@ -374,6 +281,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         public IActionResult ProductsManagement(int page = 1, string name="")
         {
             check = true;
+            ViewData["Brands"] = _context.Brands.ToList();
             paginition(page, name);
             return View();
         }

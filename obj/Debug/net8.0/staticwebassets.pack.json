@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\07dc64f7-fdc3-46c1-8beb-453010fa7316.jpg",
+      "PackagePath": "staticwebassets\\images\\articles\\07dc64f7-fdc3-46c1-8beb-453010fa7316.jpg"
+    },
+    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\0825ceb2-9b5f-4ef1-993f-617a5a359c60.png",
       "PackagePath": "staticwebassets\\images\\articles\\0825ceb2-9b5f-4ef1-993f-617a5a359c60.png"
     },
@@ -123,6 +127,10 @@
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\3bc2dae1-9dc5-4a76-9045-4996c6878c7f.png",
       "PackagePath": "staticwebassets\\images\\articles\\3bc2dae1-9dc5-4a76-9045-4996c6878c7f.png"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\4b236235-1423-4b92-815c-2166f0e0b1c0.png",
+      "PackagePath": "staticwebassets\\images\\articles\\4b236235-1423-4b92-815c-2166f0e0b1c0.png"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\4c1f1d41-40fc-411f-a521-ff306702d818.png",
@@ -157,12 +165,20 @@
       "PackagePath": "staticwebassets\\images\\articles\\820a8557-59b4-4ee8-8c93-b4d858ea0916.png"
     },
     {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\87036e97-49f7-41f7-9a08-cd457340e559.jpg",
+      "PackagePath": "staticwebassets\\images\\articles\\87036e97-49f7-41f7-9a08-cd457340e559.jpg"
+    },
+    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\8be615e5-ab61-45bc-bc05-0e349be3669e.png",
       "PackagePath": "staticwebassets\\images\\articles\\8be615e5-ab61-45bc-bc05-0e349be3669e.png"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\8f92558b-c0d3-4130-a82d-e4118bee6325.png",
       "PackagePath": "staticwebassets\\images\\articles\\8f92558b-c0d3-4130-a82d-e4118bee6325.png"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\9c7b37af-930e-4205-ab90-132fb531e26f.png",
+      "PackagePath": "staticwebassets\\images\\articles\\9c7b37af-930e-4205-ab90-132fb531e26f.png"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\9c8a070e-bf3f-4470-aadc-a4751cf90749.png",
@@ -469,10 +485,6 @@
       "PackagePath": "staticwebassets\\images\\products\\0e9f36ff-573d-4e9a-8112-fd0cd9902985.png"
     },
     {
-      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\0f2309e7-948e-423d-8ddf-ed33d8eb911d.png",
-      "PackagePath": "staticwebassets\\images\\products\\0f2309e7-948e-423d-8ddf-ed33d8eb911d.png"
-    },
-    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\1.png",
       "PackagePath": "staticwebassets\\images\\products\\1.png"
     },
@@ -493,8 +505,8 @@
       "PackagePath": "staticwebassets\\images\\products\\133c5e58-8bef-4434-9f97-9b2831b6ab7b.png"
     },
     {
-      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\168a6b0a-7acb-4354-bc11-bfc38d4342ca.png",
-      "PackagePath": "staticwebassets\\images\\products\\168a6b0a-7acb-4354-bc11-bfc38d4342ca.png"
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\13de2762-3de9-4d2c-87ac-f4b4fe40ccb7.webp",
+      "PackagePath": "staticwebassets\\images\\products\\13de2762-3de9-4d2c-87ac-f4b4fe40ccb7.webp"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\16dbea01-0626-4ff5-bfde-53ae08113f74.png",
@@ -537,10 +549,6 @@
       "PackagePath": "staticwebassets\\images\\products\\2f16e89f-c9ed-4517-9470-c8521f87171f.png"
     },
     {
-      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\2f9004b2-ac29-4b93-aea6-332135c23fe9.png",
-      "PackagePath": "staticwebassets\\images\\products\\2f9004b2-ac29-4b93-aea6-332135c23fe9.png"
-    },
-    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\3083e047-80e5-4678-a046-6ed9b4784e88.png",
       "PackagePath": "staticwebassets\\images\\products\\3083e047-80e5-4678-a046-6ed9b4784e88.png"
     },
@@ -559,6 +567,10 @@
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\387e0090-2895-4ff0-9969-90a9aa22772e.png",
       "PackagePath": "staticwebassets\\images\\products\\387e0090-2895-4ff0-9969-90a9aa22772e.png"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\3bd57838-4205-4404-8f00-bf85a626fb8f.png",
+      "PackagePath": "staticwebassets\\images\\products\\3bd57838-4205-4404-8f00-bf85a626fb8f.png"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\3c57bd90-31a9-4245-ba65-08c89326f581.png",
@@ -605,10 +617,6 @@
       "PackagePath": "staticwebassets\\images\\products\\55c9e4a3-5562-45a7-99ad-279b5047f15f.png"
     },
     {
-      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\56e2ec15-6428-4413-8cd1-1bc2c0189a31.png",
-      "PackagePath": "staticwebassets\\images\\products\\56e2ec15-6428-4413-8cd1-1bc2c0189a31.png"
-    },
-    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\588f2428-9bd0-45c3-9e55-9f1f7543cdfb.png",
       "PackagePath": "staticwebassets\\images\\products\\588f2428-9bd0-45c3-9e55-9f1f7543cdfb.png"
     },
@@ -623,10 +631,6 @@
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\5d1ae6b7-e9ae-4a6e-ac79-87fd14bed802.png",
       "PackagePath": "staticwebassets\\images\\products\\5d1ae6b7-e9ae-4a6e-ac79-87fd14bed802.png"
-    },
-    {
-      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\5d2497cb-6675-4918-a160-98f5079573cd.png",
-      "PackagePath": "staticwebassets\\images\\products\\5d2497cb-6675-4918-a160-98f5079573cd.png"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\5f9f5356-1977-4eaf-812c-5c820f79d823.png",
@@ -709,6 +713,14 @@
       "PackagePath": "staticwebassets\\images\\products\\8fa7e45a-e679-47bf-b7ed-07df5ae79d4c.png"
     },
     {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\985bbcd2-01d3-4033-88a1-2298157c2b84.webp",
+      "PackagePath": "staticwebassets\\images\\products\\985bbcd2-01d3-4033-88a1-2298157c2b84.webp"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\9a8f602a-8043-4c4a-ad33-bfab894e40a3.webp",
+      "PackagePath": "staticwebassets\\images\\products\\9a8f602a-8043-4c4a-ad33-bfab894e40a3.webp"
+    },
+    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\9e51b84b-b5d0-42eb-bb60-27cbe92e7b6c.png",
       "PackagePath": "staticwebassets\\images\\products\\9e51b84b-b5d0-42eb-bb60-27cbe92e7b6c.png"
     },
@@ -745,10 +757,6 @@
       "PackagePath": "staticwebassets\\images\\products\\c6d1ed11-b0d0-4740-a025-5aa22d9c4421.png"
     },
     {
-      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\c9635db9-a588-4ba8-b123-2c73d9801686.png",
-      "PackagePath": "staticwebassets\\images\\products\\c9635db9-a588-4ba8-b123-2c73d9801686.png"
-    },
-    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\cc0e20da-3a9d-47da-814e-0223e72ae5f9.png",
       "PackagePath": "staticwebassets\\images\\products\\cc0e20da-3a9d-47da-814e-0223e72ae5f9.png"
     },
@@ -757,16 +765,16 @@
       "PackagePath": "staticwebassets\\images\\products\\d3591f52-b022-4577-b0ce-e71cb6ab388b.png"
     },
     {
-      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\d5dec88d-de04-4d31-ac86-98d29074af3b.png",
-      "PackagePath": "staticwebassets\\images\\products\\d5dec88d-de04-4d31-ac86-98d29074af3b.png"
-    },
-    {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\db0b7847-c667-40e6-bc81-d25e60e6b8e7.png",
       "PackagePath": "staticwebassets\\images\\products\\db0b7847-c667-40e6-bc81-d25e60e6b8e7.png"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\dc24cd52-d871-4ab6-a6d8-1c65ab199803.png",
       "PackagePath": "staticwebassets\\images\\products\\dc24cd52-d871-4ab6-a6d8-1c65ab199803.png"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\e2980437-71c0-42ca-9f42-b44c56faff46.webp",
+      "PackagePath": "staticwebassets\\images\\products\\e2980437-71c0-42ca-9f42-b44c56faff46.webp"
     },
     {
       "Id": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\e4421002-5fbd-4a98-b447-02e021ba47e8.png",

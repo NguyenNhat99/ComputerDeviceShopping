@@ -52,32 +52,13 @@
                                                 <td><h6 class="fw-600 mb-1">@order.TotalPrice</h6></td>
 
                                                 <td><h6 class="fw-600 mb-1">@order.CreateAt</h6></td>
-                                                <td><h6 class="fw-600 mb-1">@(order.StatusId == 2 ? "Đang vận chuyên" : order.StatusId == 3 ? "Chờ xác nhận" : order.StatusId == 4 ? "Đã hủy" : order.StatusId == 5 ? "Thành công" : "Thất bại")</h6></td>
+                                                <td><h6 class="fw-600 mb-1">@(order.StatusId == 2 ? "Đang vận chuyên" : order.StatusId == 3 ? "Chờ xác nhận" : order.StatusId == 4 ? "Thất bại" : order.StatusId == 5 ? "Thành công" : "Đã hủy")</h6></td>
                                                 <td>
                                                     <a href="@Url.Action("Detail","Orders",new{id =order.OrderId})" class="btn btn-primary">Chi tiết</a>
                                                 </td>
                                             </tr>
                                         }
                                       
-                                       @*  @foreach (var detail in detailList)
-                                        {
-                                            foreach (var pro in productList)
-                                            {
-                                                if (detail.ProductId.Equals(pro.ProductId))
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            <img src="@pro.Avatar" style="height:60px;" />
-                                                            <h6 class="fw-600 mb-0">@pro.ProductName</h6>
-                                                        </td>
-                                                        <td><h6 class="fw-600 mb-1">@pro.Price đ</h6></td>
-                                                        <td><h6 class="fw-600 mb-1">@detail.Quantity</h6></td>
-                                                        <td><h6 class="fw-600 mb-1">@(pro.Price * detail.Quantity)</h6></td>
-                                                    </tr>
-                                                    subTotal += (float)(pro.Price * detail.Quantity);
-                                                }
-                                            }
-                                        } *@
                                     </tbody>
                                 </table>
                             </div>
@@ -97,7 +78,7 @@
                         <input type="text" class="form-control" style="border:none;" value="Điện thoại: @Model.Phone" disabled>
                         <input type="text" class="form-control" style="border:none;" value="Email: @Model.Email" disabled>
                         <input type="text" class="form-control" style="border:none;" value="Họ tên: @Model.LastName @Model.FirstName" disabled>
-                        <input type="text" class="form-control" style="border:none;" value="Địa chỉ: @Model.CustomerId" disabled>
+                        <input type="text" class="form-control" style="border:none;" value="Địa chỉ: @Model.DeliverAddress" disabled>
                     </div>
                     <div class="mb-3">
                         <label class="form-label "><b>Thống kê</b></label>

@@ -95,5 +95,17 @@ namespace ComputerDeviceShopping.Controllers
             ViewData["Categories"] = _context.Categories.ToList();
 
         }
+        [HttpPost]
+        [Route("api/comments/replyComment/{id}")]
+        public IActionResult ReplyComment(int id)
+        {
+            var comment = _context.Comments.FirstOrDefault(c=>c.CommentId == id);
+            if (comment!=null)
+            {
+                var account = _context.Accounts.FirstOrDefault(c => c.UserId.Equals(comment.UserId));
+                return Json(new { Success = true, message = "Thành công", name = account.FirstName });
+            }
+            return Json(new { Success = false, message = "Thất bại" });
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ComputerDeviceShopping.Common;
 using ComputerDeviceShopping.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
 {
@@ -175,16 +176,49 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// <param name="id">id tài khoản cần xóa </param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/accounts/delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [Route("api/managementaccount/delete/{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            var account = await _context.Accounts.FindAsync(id);
+            var account = await _context.Accounts.FirstOrDefaultAsync(c => c.UserId.Equals(id));
             if (account != null)
             {
+                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerId.Equals(account.CustomerId));
+                if (customer != null)
+                {
+                    var orders = await _context.Orders.Where(c => c.CustomerId.Equals(customer.CustomerId)).ToListAsync();
+                    foreach (var order in orders)
+                    {
+                        var ordersDetail = await _context.OrdersDetails.Where(c => c.OrderId.Equals(order.OrderId)).ToListAsync();
+                        _context.OrdersDetails.RemoveRange(ordersDetail);
+                        _context.Orders.Remove(order);
+                    }
+                    _context.Customers.Remove(customer);
+                }
+
+                var cart = await _context.Carts.FirstOrDefaultAsync(c => c.UserId.Equals(account.UserId));
+                if (cart != null)
+                {
+                    var cartItems = await _context.CartItems.Where(c => c.CartId.Equals(cart.CartId)).ToListAsync();
+                    _context.CartItems.RemoveRange(cartItems);
+                    _context.Carts.Remove(cart);
+                }
+
+                var comments = await _context.Comments.Where(c => c.UserId.Equals(account.UserId)).ToListAsync();
+                _context.Comments.RemoveRange(comments);
+
+                var favouriteList = await _context.FavouriteLists.Where(c => c.UserId.Equals(account.UserId)).ToListAsync();
+                _context.FavouriteLists.RemoveRange(favouriteList);
+
+                var articles = await _context.Articles.Where(c => c.UserId.Equals(account.UserId)).ToListAsync();
+                _context.Articles.RemoveRange(articles);
+
+                var activateCodes = await _context.ActivateCodes.Where(c => c.UserId.Equals(account.UserId)).ToListAsync();
+                _context.ActivateCodes.RemoveRange(activateCodes);
+
                 _context.Accounts.Remove(account);
-                await _context.SaveChangesAsync();
+                 _context.SaveChanges();
                 return Json(new { success = true, message = "Xóa thành công" });
-            }
+        }
             return Json(new { success = false, message = "Xóa thất bại" });
         }
         /// <summary>

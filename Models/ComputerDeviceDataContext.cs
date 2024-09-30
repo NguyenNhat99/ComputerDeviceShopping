@@ -41,7 +41,6 @@ public partial class ComputerDeviceDataContext : DbContext
 
     public virtual DbSet<Image> Images { get; set; }
 
-
     public virtual DbSet<Order> Orders { get; set; }
 
     public virtual DbSet<OrderStatus> OrderStatuses { get; set; }

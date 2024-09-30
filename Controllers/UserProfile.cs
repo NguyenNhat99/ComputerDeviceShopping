@@ -18,7 +18,15 @@ namespace ComputerDeviceShopping.Controllers
 		}
 		public IActionResult Index()
 		{
-			return View(_userLoggedService.GetUserLogged());
+			var account = _userLoggedService.GetUserLogged();
+			if(account.GroupId == 3)
+			{
+                return View(_userLoggedService.GetUserLogged());
+            }
+            else
+			{
+				return RedirectToAction("Index", "AdminProfile", new {area="PrivateSite"});
+			}
 		}
 		/// <summary>
 		/// Để thay đổi các thông tin của người dùng
@@ -95,7 +103,8 @@ namespace ComputerDeviceShopping.Controllers
 		[Route("api/userprofile/getcontionalmemberrank/{id}")]
 		public IActionResult GetConditionalMemberRank(int id)
 		{
-			var memberLevel = _context.MemberLevel.FirstOrDefault(d => d.MemberLevelId == id);
+			var account = _userLoggedService.GetUserLogged();
+			var memberLevel = _context.MemberLevel.FirstOrDefault(d => d.MemberLevelId == account.MemberLevelId);
 			return Json(new {success = true, message = "Thành công", data = memberLevel});
 		}
 

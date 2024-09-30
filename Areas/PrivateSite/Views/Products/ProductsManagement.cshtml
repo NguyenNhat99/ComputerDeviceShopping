@@ -3,6 +3,7 @@
     ViewData["Title"] = "ProductsManagement";
     Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
     var products = ViewData["Products"] as List<Product>;
+    var brands = ViewData["Brands"] as List<Brand>;
 }
 <div class="container-fluid">
     <div class="row">
@@ -54,7 +55,18 @@
                                         <td><h6 class="fw-600 mb-0">@item.ProductId</h6></td>
                                         <td><h6 class="fw-600 mb-1">@item.ProductName</h6></td>
                                         <td><h6 class="fw-600 mb-1">@item.Price</h6></td>
-                                        <td><h6 class="fw-600 mb-1">@item.Brand</h6></td>
+                                        <td>
+                                                @foreach(var brand in brands)
+                                                {
+                                                    if(brand.BrandId == item.BrandId)
+                                                    {
+                                                    <h6 class="fw-600 mb-1">
+                                                        @brand.BrandName
+                                                    </h6>
+
+                                                    }
+                                                }
+                                            </td>
                                         <td>
                                             <a href="@Url.Action("Detail","Products",new{id=item.ProductId})" class="btn btn-primary">Chi tiết</a>
                                             <button class="btn @(item.Stock == true ? "btn-default" :"btn-warning")" onclick='Active(@item.ProductId,"products")'>@(item.Stock == true ? "Hết hàng" : "Còn hàng")</button>

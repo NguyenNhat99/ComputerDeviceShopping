@@ -15,8 +15,6 @@ public partial class Comment
 
     public string ProductId { get; set; } = null!;
 
-    public int? TypeId { get; set; }
-
     public int? ReplyComment { get; set; }
     public string? FirstName { set; get; } 
 

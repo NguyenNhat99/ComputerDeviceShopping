@@ -57,20 +57,8 @@
                 <div class="product_d_right">
                     <form action="#">
                         <h1>@product.ProductName</h1>
-                       @*  <div class=" product_ratting">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li class="review"><a href="#"> (250 reviews) </a></li>
-                            </ul>
-
-                        </div> *@
                         <div class="price_box">
                             <span class="current_price">@product.Price đ</span>
-                            @* <span class="old_price">$80.00</span> *@
                         </div>
                         <div class="product_desc">
                             <ul>
@@ -350,12 +338,24 @@
     function ReplyComment(idComment) {
         document.getElementById('replyComment').value = idComment;
         var reply = document.getElementById('replycm');
-        if (idComment ==0) {
-            reply.innerHTML = `<label style="color:red;display:none;">Trả lời bình luận: <span>${idComment}</span></label>`;
-        } else {
-            reply.innerHTML = `<label style="color:red;display:block;">Trả lời bình luận: <span>${idComment}</span></label>`;
 
-        }
+        fetch(`/api/comments/replyComment/${idComment}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (idComment == 0) {
+                        reply.innerHTML = `<label style="color:red;display:none;">Trả lời bình luận: <span>${data.name}</span></label>`;
+                    } else {
+                        reply.innerHTML = `<label style="color:red;display:block;">Trả lời bình luận: <span>${data.name}</span></label>`;
+
+                    }
+                }
+            }).catch(error => console.error("Error"));
     }
     function RemoveComment(idComment) {
         console.log("xyz" + idComment);

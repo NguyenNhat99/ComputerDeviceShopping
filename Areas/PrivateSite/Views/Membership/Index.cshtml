@@ -11,7 +11,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Thêm mã giảm giá</h5>
+                    <h5 class="card-title fw-semibold mb-4">Hạng thành viên</h5>
                     <div class="card">
                         <div class="card-body">
                             @using (Html.BeginForm("Insert", "Membership", FormMethod.Post))
@@ -134,7 +134,7 @@
 
     </div>
 </div>
-<script src="https://cdn.tiny.cloud/1/b74ahe4e18x18qxt2o4w63leenr4w5976k1r1wk915ugvr97/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/vvlyr0qefrmk6r9b6wcqn4ciroh14m5fqe19ujrw8zfezuwm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
         selector: '#levelDescription',
@@ -143,14 +143,6 @@
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
     });
-
-    // document.addEventListener("DOMContentLoaded", function () {
-    //     Swal.fire({
-    //         title: "LƯU Ý !",
-    //         text: "Hạng thành viên bạn chỉ được sửa ",
-    //         icon: "info"
-    //     });
-    // });
     function Update(id) {
         fetch(`/api/membership/update/${id}`, {
             method: 'POST',
@@ -166,10 +158,7 @@
             })
             .then(data => {
                 if (data.success) {
-                    // document.getElementById('levelName').value = data.data.levelName;
-                    // document.getElementById('levelDescription').value = data.data.levelDescription;
-                    // document.getElementById('levelDiscount').value = data.data.levelDiscount;
-                    // document.getElementById('limit').value = data.data.limit;
+                  
                 } else {
                     alert('Update failed');
                 }

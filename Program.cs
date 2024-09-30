@@ -7,13 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
        .AddCookie(options =>
        {
-           options.LoginPath = "/Account/Login"; // Path to login
-           options.AccessDeniedPath = "/Account/AccessDenied"; // Path to access denied page
+           options.LoginPath = "/Account/Login"; 
+           options.AccessDeniedPath = "/Account/AccessDenied"; 
        });
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
-builder.Services.AddHttpContextAccessor(); // Thêm dịch vụ HttpContextAccessor
-//Thêm dịch vụ cho getcartsession để tái sử dụng code
+builder.Services.AddHttpContextAccessor(); 
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<IUserLoggedService, UserLoggedService>();
 builder.Services.AddSession();

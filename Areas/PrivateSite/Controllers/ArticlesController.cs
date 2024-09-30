@@ -31,6 +31,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         }
         public IActionResult Insert()
         {
+            check = false;
             ViewBag.UserName = _userLoggedService.GetUserLogged().Username;
             return View();
         }
@@ -41,6 +42,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// <param name="avatar">Hình ảnh đại diện của bài viết</param>
         /// <returns>View của index</returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Insert(Article ar, IFormFile avatar)
         {
             ViewBag.UserName = _userLoggedService.GetUserLogged().Username;
@@ -69,7 +71,10 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
                     article.Avatar = await CommonTools.SaveImage(avatar, "images", "articles");
             }
             _context.SaveChanges();
-           if(check) return Redirect("ManagementArticles"); else return Redirect("Index");
+           if(check) 
+                return Redirect("ManagementArticles"); 
+            else 
+                return Redirect("Index");
         }
         public IActionResult Detail(int id)
         {

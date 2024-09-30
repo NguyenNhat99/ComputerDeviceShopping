@@ -35,7 +35,6 @@ namespace ComputerDeviceShopping.Controllers
                 CommentContent = commentContent,
                 UserId = account.UserId,
                 CreateAt = DateTime.Now,
-                TypeId = 0,
                 FirstName = account.FirstName
             };
             if (replyComment > 0)
@@ -86,7 +85,6 @@ namespace ComputerDeviceShopping.Controllers
                 ReplyComment = idComment,
                 CreateAt= DateTime.Now,
                 ProductId = idProduct,
-                TypeId = 0,
                 
             };
             _context.Comments.Add(comment);

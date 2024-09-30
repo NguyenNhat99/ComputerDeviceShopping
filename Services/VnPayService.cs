@@ -30,7 +30,7 @@ namespace ComputerDeviceShopping.Services
             vnpay.AddRequestData("vnp_Version", _config["VnPay:Version"]);
             vnpay.AddRequestData("vnp_Command", _config["VnPay:Command"]);
             vnpay.AddRequestData("vnp_TmnCode", _config["VnPay:vnp_TmnCode"]);
-            vnpay.AddRequestData("vnp_Amount", (model.Amount*10).ToString());
+            vnpay.AddRequestData("vnp_Amount", (model.Amount*100).ToString());
 
             vnpay.AddRequestData("vnp_CreateDate", model.CreateAt.ToString("yyyyMMddHHmmss"));
             vnpay.AddRequestData("vnp_CurrCode", _config["VnPay:CurrCode"]);
