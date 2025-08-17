@@ -46,6 +46,9 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 
 ### 2. Quản trị, nhân viên
 
+- **Dashboard**
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/b2d7477c-9220-4360-b760-f27d853ec3d9" />
+
 - **Bài viết**
 <img width="1875" height="955" alt="Thêm bài viết" src="https://github.com/user-attachments/assets/c9ea4b54-dce0-41c3-b0fd-78aa38136a66" />
 <img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/585d30a8-6695-4608-a96a-de9a6355a6a5" />
