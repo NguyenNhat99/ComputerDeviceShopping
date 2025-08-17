@@ -77,7 +77,24 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 <img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/b39dccc3-df5f-4c97-b49b-2777a64a60c4" />
 
 - **Quản lý tài khoản**
-- **Sản phẩm**
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/a297dadc-6747-4018-b859-0fea61e40ee8" />
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/00305b81-49c3-491c-99ed-23357155a970" />
+  
+- **Quản lý bài viết**
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/349a5899-a3c3-4e02-a8cf-5a4ff33db208" />
+
+- **Quản lý đơn hàng**
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/da96e5f5-0bb0-4e21-9061-06d3f210bf05" />
+
+- **Cài đặt website**
+<img width="1875" height="1127" alt="image" src="https://github.com/user-attachments/assets/535ce485-9d20-460e-ac8c-4c2d280b1d02" />
+<img width="1875" height="1109" alt="image" src="https://github.com/user-attachments/assets/ceb52cc9-5e0a-4e98-80d2-4b4a040dcd6c" />
+
+- **Thông tin cá nhân trang quản trị**
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/d849913c-4f77-49e0-af99-529d7412cf5b" />
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/63a82750-f6ec-4060-bda3-5fea88a3d803" />
+
+
 
 
   
