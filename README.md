@@ -1,4 +1,3 @@
-<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/5027919a-c210-4cf8-bcee-68e921daf774" />## I. GIới thiệu chung
 Website bán thiết bị điện tử được xây dựng bằng **Microsoft ASP.NET Core MVC**. Đây là website thương mại điện tử mô phỏng việc bán các thiết bị máy tính với đầy đủ chức năng.  
 ## II. công nghệ sử dụng
 - **Backend**: ASP.NET Core MVC, Entity Framework Core, SignalR, Session & Cookie Authentication  
