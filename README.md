@@ -1,3 +1,4 @@
+# Website bán thiết bị điện tử
 Website bán thiết bị điện tử được xây dựng bằng **Microsoft ASP.NET Core MVC**. Đây là website thương mại điện tử mô phỏng việc bán các thiết bị máy tính với đầy đủ chức năng.  
 ## II. công nghệ sử dụng
 - **Backend**: ASP.NET Core MVC, Entity Framework Core, SignalR, Session & Cookie Authentication  
