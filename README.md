@@ -10,7 +10,7 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
   
 ## IV. Các trang sản phẩm
 
-### Người dùng
+### 1. Người dùng
 
 - **Trang chủ**  
   <img width="1000" alt="Trang chủ" src="https://github.com/user-attachments/assets/9885c65e-52e8-4e0b-916a-9b12f6940c5e" />
@@ -44,7 +44,7 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
   <img width="800" alt="Profile 5" src="https://github.com/user-attachments/assets/ca716b08-cb3a-496c-9472-0bb21e743046" />  
   <img width="800" alt="Profile 6" src="https://github.com/user-attachments/assets/8ac3eff8-e56f-4a3d-8316-b9e56bc96945" />
 
-### Quản trị, nhân viên
+### 2. Quản trị, nhân viên
 
 - **Bài viết**
 <img width="1875" height="955" alt="Thêm bài viết" src="https://github.com/user-attachments/assets/c9ea4b54-dce0-41c3-b0fd-78aa38136a66" />
