@@ -1,4 +1,4 @@
-## I. GIới thiệu chung
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/5027919a-c210-4cf8-bcee-68e921daf774" />## I. GIới thiệu chung
 Website bán thiết bị điện tử được xây dựng bằng **Microsoft ASP.NET Core MVC**. Đây là website thương mại điện tử mô phỏng việc bán các thiết bị máy tính với đầy đủ chức năng.  
 ## II. công nghệ sử dụng
 - **Backend**: ASP.NET Core MVC, Entity Framework Core, SignalR, Session & Cookie Authentication  
@@ -55,12 +55,23 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 <img width="1875" height="1327" alt="image" src="https://github.com/user-attachments/assets/3a3653d6-c004-4b74-92de-e93a5332e561" />
 
 - **Sản phẩm**
-
+<img width="1875" height="1452" alt="image" src="https://github.com/user-attachments/assets/c44a5957-9aaa-4834-aa0d-606fbfb87976" />
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/54cddc4e-1460-410c-a377-0f173dd0d843" />
+<img width="1875" height="1980" alt="image" src="https://github.com/user-attachments/assets/39a97f75-e901-4bc2-a995-436e96d14eee" />
   
-- **Sản phẩm**
-- **Sản phẩm**
-- **Sản phẩm**
-- **Sản phẩm**
+- **Loại sản phẩm**
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/5ca84a2a-449d-483d-be39-c56fc59e93da" />
+  
+- **Thương hiệu**
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/2f73a08c-d3b0-4444-84ee-ff24f34891cd" />
+
+- **Mã khuyến mãi**
+<img width="1875" height="1431" alt="image" src="https://github.com/user-attachments/assets/bc5bf0b9-cda5-4d9d-9e64-6c10e901ed59" />
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/6aec42d2-a50c-4e2d-b746-5a7be9f91f24" />
+
+- **Hạng thành viên**
+<img width="1875" height="1432" alt="image" src="https://github.com/user-attachments/assets/a9d1ddc8-0376-4a62-b26e-3935e7ca6ca0" />
+ 
 - **Sản phẩm**
 - **Sản phẩm**
 - **Sản phẩm**
