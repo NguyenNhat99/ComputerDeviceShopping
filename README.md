@@ -8,7 +8,9 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 - **Dịch vụ & Tích hợp**: MailKit (Email Sender), VNPay Payment Gateway  
 - **Khác**: LINQ, TempData/ViewBag/ViewData
 ## III. Cơ sở dữ liệu
+<details>
 <img width="1252" height="850" alt="database1" src="https://github.com/user-attachments/assets/c10bb614-0c1b-4150-8714-1b4678419cda" />
+  </details>
 ## IV. Các trang sản phẩm
 
 <details>
