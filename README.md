@@ -97,6 +97,9 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 <img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/63a82750-f6ec-4060-bda3-5fea88a3d803" />
 
 ## V. Kết quả đạt được
+**Tổng quan**
+- Hoàn thiện website thương mại điện tử bằng ASP.NET Core MVC + Razor + EF Core.
+
 - Xây dựng website thương mại điện tử bằng **ASP.NET Core MVC**, **Razor**, **EF Core** (kiến trúc MVC rõ ràng).
 - **Trang chủ**: slider, bài viết mới, sản phẩm mới.
 - **Sản phẩm**: tìm kiếm/lọc theo danh mục/brand, phân trang; trang chi tiết kèm bình luận.
