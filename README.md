@@ -11,11 +11,14 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 <img width="1252" height="850" alt="database1" src="https://github.com/user-attachments/assets/c10bb614-0c1b-4150-8714-1b4678419cda" />
 ## IV. Các trang sản phẩm
 
-<img width="1875" height="4225" alt="Trang-chủ-ComputerDeviceShoppingsite" src="https://github.com/user-attachments/assets/9885c65e-52e8-4e0b-916a-9b12f6940c5e" />
-
-<img width="1875" height="2284" alt="SanPham-ComputerDeviceShoppingsite" src="https://github.com/user-attachments/assets/690823c7-4774-4dbc-85b1-f7a4e0868578" />
-
-
+<details>
+  <summary>Trang chủ</summary>
+  <img width="1875" height="4225" alt="Trang-chủ-ComputerDeviceShoppingsite" src="https://github.com/user-attachments/assets/9885c65e-52e8-4e0b-916a-9b12f6940c5e" />
+  </details>
+  <details>
+  <summary>Trang sản phẩm</summary>
+  <img width="1875" height="2284" alt="SanPham-ComputerDeviceShoppingsite" src="https://github.com/user-attachments/assets/690823c7-4774-4dbc-85b1-f7a4e0868578" />
+</details>
 
 
 
