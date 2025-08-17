@@ -72,8 +72,11 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 - **Hạng thành viên**
 <img width="1875" height="1432" alt="image" src="https://github.com/user-attachments/assets/a9d1ddc8-0376-4a62-b26e-3935e7ca6ca0" />
  
-- **Sản phẩm**
-- **Sản phẩm**
+- **Doanh thu**
+<img width="1875" height="1110" alt="image" src="https://github.com/user-attachments/assets/570b8035-fbe1-4dd0-97ce-22055ba3ffb2" />
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/b39dccc3-df5f-4c97-b49b-2777a64a60c4" />
+
+- **Quản lý tài khoản**
 - **Sản phẩm**
 
 
