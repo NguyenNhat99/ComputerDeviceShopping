@@ -1,4 +1,3 @@
-<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/c7ee80fd-0720-41e2-a7c3-983782826858" /># Website bán thiết bị điện tử
 ## I. GIới thiệu chung
 Website bán thiết bị điện tử được xây dựng bằng **Microsoft ASP.NET Core MVC**. Đây là website thương mại điện tử mô phỏng việc bán các thiết bị máy tính với đầy đủ chức năng.  
 ## II. công nghệ sử dụng
