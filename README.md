@@ -8,8 +8,8 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 - **Dịch vụ & Tích hợp**: MailKit (Email Sender), VNPay Payment Gateway  
 - **Khác**: LINQ, TempData/ViewBag/ViewData
 ## III. Cơ sở dữ liệu
-<img width="1252" height="850" alt="database1" src="https://github.com/user-attachments/assets/c10bb614-0c1b-4150-8714-1b4678419cda" />
-
+  <img width="1252" height="850" alt="database1" src="https://github.com/user-attachments/assets/c10bb614-0c1b-4150-8714-1b4678419cda" />
+  
 ## IV. Các trang sản phẩm
 
 **1. Trang chủ**
@@ -26,6 +26,20 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
   
 **5. Chi tiết bài viết**
   <img width="1875" height="3487" alt="ChiTietBaiViet-ComputerDeviceShoppingsite-08-17-2025_04_41_PM" src="https://github.com/user-attachments/assets/56e0e730-f503-4acf-bdfa-2dfac89aa9fc" />
+
+**6. Giỏ hàng**
+<img width="1180" height="689" alt="image" src="https://github.com/user-attachments/assets/60e576cd-bdaa-426a-8856-7434f07a5a8a" />
+
+**7. Thanh toán**
+<img width="1238" height="832" alt="image" src="https://github.com/user-attachments/assets/d09255e3-2b21-43e4-928d-4b5125b980c4" />
+
+**8. Đăng nhập, đăng ký, quên mật khẩu**
+<img width="1086" height="546" alt="image" src="https://github.com/user-attachments/assets/383e2c59-f285-4cf4-b8c8-702c06f7d3d7" />
+<img width="1209" height="909" alt="image" src="https://github.com/user-attachments/assets/b2d1c06d-1e4c-4f0c-8c99-6a22396dee46" />
+<img width="1121" height="548" alt="image" src="https://github.com/user-attachments/assets/eaf38a8c-62c5-4af0-a42c-4e7a90694600" />
+
+
+
 
 
 
