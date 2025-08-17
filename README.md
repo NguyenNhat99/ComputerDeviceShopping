@@ -96,20 +96,7 @@ Website bán thiết bị điện tử được xây dựng bằng **Microsoft A
 <img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/d849913c-4f77-49e0-af99-529d7412cf5b" />
 <img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/63a82750-f6ec-4060-bda3-5fea88a3d803" />
 
-## V. Kết quả đạt được
-**Tổng quan**
-- Hoàn thiện website thương mại điện tử bằng ASP.NET Core MVC + Razor + EF Core.
 
-- Xây dựng website thương mại điện tử bằng **ASP.NET Core MVC**, **Razor**, **EF Core** (kiến trúc MVC rõ ràng).
-- **Trang chủ**: slider, bài viết mới, sản phẩm mới.
-- **Sản phẩm**: tìm kiếm/lọc theo danh mục/brand, phân trang; trang chi tiết kèm bình luận.
-- **Giỏ hàng & Yêu thích**: giỏ hàng session (khách) + đồng bộ DB (đăng nhập); thêm/xóa wishlist.
-- **Thanh toán**: tạo đơn (khách/đăng nhập), áp **voucher**, tích hợp **VNPAY** (callback), email xác nhận; trang Success/Error.
-- **Tài khoản & bảo mật**: đăng ký/đăng nhập/đăng xuất; **quên mật khẩu qua email**; băm mật khẩu **SHA-512**; phân quyền **User/Staff/Admin**.
-- **Hồ sơ người dùng**: cập nhật thông tin, **đổi mật khẩu**, theo dõi **đơn hàng** (lọc/trang), hủy khi cho phép; **hạng thành viên** theo tổng chi tiêu năm.
-- **Bài viết (Blog)**: CRUD, upload ảnh đại diện, bật/tắt trạng thái, phân trang, xem chi tiết.
-- **Quản trị**: quản lý brand/category (kèm **import Excel – EPPlus**), quản lý **voucher** (thêm hàng loạt), quản lý **tài khoản** & phân quyền, reset mật khẩu qua email; **dashboard** (đơn chờ, doanh thu hôm nay, 10 đơn gần nhất).
-- **Tiện ích**: gửi mail (**MailKit**), **LINQ**, **SignalR** (real-time), TempData/ViewData/Session, upload ảnh.
 
   
 
