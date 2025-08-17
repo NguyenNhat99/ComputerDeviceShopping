@@ -56,28 +56,28 @@
                         <div class="card-body">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <div class="form-group row mb-3">
-                                        <label class="col-sm-2 col-form-label">Tên đăng nhập</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" value="@accountInformation.Username" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-3">
-                                        <label class="col-sm-2 col-form-label">Email</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" value="@accountInformation.Email" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-3">
-                                        <label class="col-sm-2 col-form-label">Thời gian tạo</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" value="@accountInformation.CreateAt" disabled>
-                                        </div>
-                                    </div>
                                     @using (Html.BeginForm("ChangeInformation", "AdminProfile", FormMethod.Post))
                                     {
                                         @Html.AntiForgeryToken()
                                         <input type="hidden" name="UserId" value="@accountInformation.UserId" />
+                                        <div class="form-group row mb-3">
+                                            <label class="col-sm-2 col-form-label">Tên đăng nhập</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" value="@accountInformation.Username" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" value="@accountInformation.Email" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-sm-2 col-form-label">Thời gian tạo</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" value="@accountInformation.CreateAt" readonly>
+                                            </div>
+                                        </div>
                                         <div class="form-group row mb-3">
                                             <label class="col-sm-2 col-form-label">Số điện thoại</label>
                                             <div class="col-sm-10">
@@ -111,32 +111,60 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        @if (TempData["Toast"] is string toast)
+                                        {
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                @toast
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                            </div>
+                                        }
+                                        @if (TempData["Error"] is string err)
+                                        {
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                @err
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                            </div>
+                                        }
                                         <button type="submit" class="btn btn-success">Lưu</button>
                                     }
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <form id="form_changePW" >
-                                        <input type="hidden" id="iduser" value="@accountInformation.UserId" />
+                                    @using (Html.BeginForm("ChangePassword", "AdminProfile", FormMethod.Post))
+                                    {
                                         <div class="form-group row mb-3">
                                             <label for="currentPassword" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="currentPassword">
+                                                <input type="password" class="form-control" name="CurrentPassword" id="CurrentPassword" />
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
                                             <label for="newPassword" class="col-sm-2 col-form-label">Mật khẩu mới</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="newPassword">
+                                                <input type="password" class="form-control" name="NewPassword" id="NewPassword" />
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
                                             <label for="confirmNewPassword" class="col-sm-2 col-form-label">Nhập lại mật khẩu mới</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="confirmNewPassword">
+                                                <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword">
                                             </div>
                                         </div>
-                                        <button type="button" onclick="ChangePassword()" class="btn btn-success">Lưu</button>
-                                    </form>
+                                        @if (TempData["Toast"] is string toast)
+                                        {
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                @toast
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                            </div>
+                                        }
+                                        @if (TempData["Error"] is string err)
+                                        {
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                @err
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                            </div>
+                                        }
+                                        <button type="submit" class="btn btn-success">Lưu</button>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -146,67 +174,3 @@
         </div>
     </section>
 </div>
-<script>
-    function ChangePassword() {
-        var id = document.getElementById('iduser').value;
-        var currentPassword = document.getElementById('currentPassword').value;
-        var newPassword = document.getElementById('newPassword').value;
-        var confirmNewPassword = document.getElementById('confirmNewPassword').value;
-
-        if (currentPassword.lenght == '' || newPassword == '' || confirmNewPassword == '') {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Không được để trống",
-                showConfirmButton: true,
-                timer: 1500
-            });
-            return;
-        } else if (newPassword !== confirmNewPassword) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Mật khẩu mới không khớp",
-                showConfirmButton: true,
-                timer: 1500
-            });
-            return;
-        }
-        
-        fetch(`/api/adminprofile/changepassword/${id}&${currentPassword}&${newPassword}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: data.message,
-                        showConfirmButton: true,
-                        timer: 1500
-                    }).then((result) => {
-                        if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
-                            location.reload(true);
-                        }
-                    });
-                } else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: data.message,
-                        showConfirmButton: true,
-                        timer: 1500
-                    }).then((result) => {
-                        location.reload(true);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }
-</script>

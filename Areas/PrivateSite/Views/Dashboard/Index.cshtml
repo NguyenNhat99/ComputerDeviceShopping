@@ -1,10 +1,146 @@
-﻿
+﻿@using ComputerDeviceShopping.Common
+@using ComputerDeviceShopping.Models
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
     Layout = "~/Areas/PrivateSite/Views/Shared/_Layout.cshtml";
-}
+    var orders = TempData["Orders"] as List<Order>;
+    // ViewData["Orders"] = 
 
-<div class="container-fluid">
-    <h1 style="text-align:center; color:red;">Nguyễn Hoàng Nhất</h1>
+}
+<style>
+    .hover-card-dashboard:hover{
+        color:red;
+    }
+</style>
+<div class="container-fluid py-3">
+    <h2 class="mb-3">Tổng quan</h2>
+
+    <div class="row g-3">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <a class="card bg-success text-white p-3" href="@Url.Action("Index","Revenue")">
+                <div class="small">Doanh thu hôm nay</div>
+                <div class="fs-4 fw-bold">@ConvertHelper.ConvertToVND(ViewBag.RevenueOfDay)</div>
+                <div class="small text-white-50">Quản lý doanh thu</div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <a class="hover-card-dashboard card bg-warning text-dark p-3" href="@Url.Action("Index","Orders")">
+                <div class="small">Đơn cần xác nhận</div>
+                <div class="fs-4 fw-bold">@ViewBag.OrderConfirm</div>
+                <div class="small text-dark-50">Danh sách đơn hàng</div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <a class="hover-card-dashboard card bg-primary text-white p-3" href="@Url.Action("Insert","Articles")">
+                <div class="small">Thêm bài viết</div>
+                <div class="fs-4 fw-bold">+ Mới</div>
+                <div class="small text-white-50">Tạo bài viết mới</div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <a class="hover-card-dashboard card bg-info text-white p-3" href="@Url.Action("Insert","Products")">
+                <div class="small">Thêm sản phẩm</div>
+                <div class="fs-4 fw-bold">+ Mới</div>
+                <div class="small text-white-50">Tạo sản phẩm mới</div>
+            </a>
+        </div>
+    </div>
+
+   @*  <!-- Charts -->
+    <div class="row g-3 mt-2">
+        <div class="col-lg-8">
+            <div class="card h-100">
+                <div class="card-header">Doanh thu 7 ngày gần nhất</div>
+                <div class="card-body">
+                    <canvas id="revenueLine"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-header">Cơ cấu trạng thái đơn</div>
+                <div class="card-body">
+                    <canvas id="orderDonut"></canvas>
+                </div>
+            </div>
+        </div>
+    </div> *@
+    <div class="card mt-3">
+        <div class="card-header">Đơn hàng gần đây</div>
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>Khách hàng</th>
+                        <th>Ngày</th>
+                        <th class="text-end">Tổng tiền</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!orders.Any())
+                    {
+                        <h3>Hiện tại chưa có đơn hàng</h3>
+                    }else{
+                        @foreach (var o in orders)
+                        {
+                            <tr>
+                                <td>@o.OrderId</td>
+                                <td>@o.Customer.LastName @o.Customer.FirstName</td>
+                                <td>@o.CreateAt</td>
+                                <td class="text-end"> @ConvertHelper.ConvertToVND(@o.TotalPrice ?? 0)</td>
+                                <td><span class="badge @(o.Status.OrderStatusName.Equals("Chờ xác nhận") ? "bg-secondary" : 
+                                    o.Status.OrderStatusName.Equals("Đang vận chuyển") ? "bg-primary" : 
+                                    o.Status.OrderStatusName.Equals("Thành công") ? "bg-success" : "bg-danger") "
+                                >@o.Status.OrderStatusName</span></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Dữ liệu ảo cho Line chart
+        const revenueLabels = ["09/08", "10/08", "11/08", "12/08", "13/08", "14/08", "15/08"];
+        const revenueData = [8250000, 9120000, 10340000, 11500000, 9900000, 12800000, 12450000];
+
+        new Chart(document.getElementById('revenueLine'), {
+            type: 'line',
+            data: {
+                labels: revenueLabels,
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: revenueData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Dữ liệu ảo cho Doughnut chart
+        const statusLabels = ["Pending", "Processing", "Shipped", "Cancelled"];
+        const statusCounts = [5, 7, 12, 1];
+
+        new Chart(document.getElementById('orderDonut'), {
+            type: 'doughnut',
+            data: {
+                labels: statusLabels,
+                datasets: [{
+                    data: statusCounts,
+                    backgroundColor: ['#6c757d', '#ffc107', '#198754', '#dc3545']
+                }]
+            },
+            options: { responsive: true }
+        });
+    </script>

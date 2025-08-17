@@ -15,18 +15,18 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
 
     public class ArticlesController : Controller
     {
-        private static ComputerDeviceDataContext _context = new ComputerDeviceDataContext();
+        private static ComputerDeviceDataContext _context;
         private static bool check = false;
         private readonly IUserLoggedService _userLoggedService;
-        public ArticlesController(IUserLoggedService userLoggedService)
+        public ArticlesController(ComputerDeviceDataContext context, IUserLoggedService userLoggedService)
         {
             _userLoggedService = userLoggedService;
+            _context = context; 
         }
-
-        public IActionResult Index(int page = 1, string name = "")
+        public async Task<IActionResult> Index(int page = 1, string name = "")
         {
             check = false;
-            paginition(page, name);
+            await paginition(page, name);
             return View();
         }
         public IActionResult Insert()
@@ -63,7 +63,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             }
             else
             {
-                var article = _context.Articles.Find(ar.ArticleId);
+                var article =await _context.Articles.FindAsync(ar.ArticleId);
                 article.ArticleContent = ar.ArticleContent;
                 article.SummaryContent = ar.SummaryContent;
                 article.ArticleName = ar.ArticleName;
@@ -76,9 +76,9 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             else 
                 return Redirect("Index");
         }
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var article = _context.Articles.Find(id);
+            var article =await _context.Articles.FindAsync(id);
             if (article != null)
             {
                 if (!check && article.UserId.Equals(_userLoggedService.GetUserLogged().UserId))
@@ -89,7 +89,8 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
                 else
                 {
                     ViewBag.ArticleAvatar = article.Avatar;
-                    ViewBag.UserName = _context.Accounts.FirstOrDefault(d => d.UserId.Equals(article.UserId)).Username;
+                    var ac = await _context.Accounts.FirstOrDefaultAsync(d => article.UserId.Equals(d.UserId));
+                    ViewBag.UserName = ac.Username;
                 }
                 return View(article);
             }
@@ -130,16 +131,16 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             }
             return Json(new { success = false, message = "Cập nhật thất bại" });
         }
-        private void paginition(int page = 1, string name = "")
+        private async Task paginition(int page = 1, string name = "")
         {
             List<Article> articles = new List<Article>();
             if (check)
             {
-                articles = _context.Articles.Where(d => (String.IsNullOrEmpty(name) || d.ArticleName.Contains(name))).ToList();
+                articles =await _context.Articles.Where(d => (String.IsNullOrEmpty(name) || d.ArticleName.Contains(name))).ToListAsync();
             }
             else
             {
-                articles = _context.Articles.Where(d => d.UserId.Equals(_userLoggedService.GetUserLogged().UserId) && (String.IsNullOrEmpty(name) || d.ArticleName.Contains(name))).ToList();
+                articles = await _context.Articles.Where(d => d.UserId.Equals(_userLoggedService.GetUserLogged().UserId) && (String.IsNullOrEmpty(name) || d.ArticleName.Contains(name))).ToListAsync();
                 ViewBag.UserName = _userLoggedService.GetUserLogged().Username;
             }
             var pagVM = CommonTools.Paginition(articles, page, 10);
@@ -149,10 +150,10 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             ViewData["Articles"] = pagVM.data;
         }
         [CustomAuthorize("quản trị")]
-        public IActionResult ManagementArticles(int page = 1, string name = "")
+        public async Task<IActionResult> ManagementArticles(int page = 1, string name = "")
         {
             check = true;
-            paginition(page, name);
+            await paginition(page, name);
             return View();
         }
 

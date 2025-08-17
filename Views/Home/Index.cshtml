@@ -1,13 +1,21 @@
-﻿@using ComputerDeviceShopping.Models;
+﻿@using System.Linq
+@using ComputerDeviceShopping.Models;
 @using ComputerDeviceShopping.Common;
+
 @{
     ViewData["Title"] = "Trang chủ";
-    var slideList = ViewData["Slider"] as List<Slider>;
-    var articles = ViewData["Articles"] as List<Article>;
-    var accountPost = ViewData["AccountPost"] as List<Account>;
-    var productList = ViewData["ProductList"] as List<Product>;
-    var products = ViewData["Products"] as List<Product>;
+    var slideList = (ViewData["Slider"] as IEnumerable<Slider>) ?? Enumerable.Empty<Slider>();
+    var articles = (ViewData["Articles"] as IEnumerable<Article>) ?? Enumerable.Empty<Article>();
+    var accountPost = (ViewData["AccountPost"] as IEnumerable<Account>) ?? Enumerable.Empty<Account>();
+    var productList = (ViewData["ProductList"] as IEnumerable<Product>) ?? Enumerable.Empty<Product>();
+
+    string Truncate(string s, int max)
+    {
+        if (string.IsNullOrEmpty(s)) return string.Empty;
+        return s.Length > max ? s.Substring(0, max) + "..." : s;
+    }
 }
+
 <style>
     .dress-card-img-top {
         width: 100%;
@@ -127,28 +135,30 @@
 </style>
 <section class="slider_section d-flex align-items-center" data-bgimg="/images/plsite/slider/slider3.jpg">
     <div class="slider_area owl-carousel">
-        @foreach(var slide in slideList)
+        @if (slideList.Any())
         {
-            <div class="single_slider d-flex align-items-center">
-                <div class="container">
-                    <div class="row mt-5">
-                        <div class="col-xl-6 col-md-6">
-                            <div class="slider_content">
-                                <h1>@slide.SliderTitle</h1>
-                                <h2>@slide.ProductName</h2>
-                                <p>@slide.DescriptionSlide</p>
-                                <a class="button" href="@slide.ProductLink">Mua ngay</a>
+            @foreach (var slide in slideList)
+            {
+                <div class="single_slider d-flex align-items-center">
+                    <div class="container">
+                        <div class="row mt-5">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="slider_content">
+                                    <h1>@slide.SliderTitle</h1>
+                                    <h2>@slide.ProductName</h2>
+                                    <p>@slide.DescriptionSlide</p>
+                                    <a class="button" href="@slide.ProductLink">Mua ngay</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6">
-                            <div class="slider_content">
-                                <img src="@slide.SlideImage" alt="">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="slider_content">
+                                    <img src="@slide.SlideImage" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            }
         }
     </div>
 </section>
@@ -262,7 +272,7 @@
                                     <span class="post_date">Ngày đăng : <a href="#">@item.CreateAt</a></span>
                                 </div>
                                 <div class="blog_desc">
-                                    <p style="text-align: justify;">@(item.SummaryContent.Substring(0, 170) + "...")</p>
+                                    <p style="text-align: justify;">@Truncate(item.SummaryContent, 170)</p>
                                 </div>
                                 <footer class="readmore_button">
                                     <a href='@Url.Action("Detail","Blog",new{id = item.ArticleId})'>Xem thêm</a>

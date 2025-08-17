@@ -4,6 +4,10 @@ using ComputerDeviceShopping.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ComputerDeviceShopping.Services;
+using ComputerDeviceShopping.DTOs.Accounts;
+using Microsoft.EntityFrameworkCore;
+using System.Xml;
+using System.Net.WebSockets;
 
 namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
 {
@@ -12,10 +16,13 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
     [CustomAuthorize("quản trị","nhân viên")]
     public class AdminProfileController : Controller
     {
-        private static ComputerDeviceDataContext _context = new ComputerDeviceDataContext();
+        private readonly ComputerDeviceDataContext _context;
         private readonly IUserLoggedService _userLoggedService;
-        public AdminProfileController(IUserLoggedService userLoggedService)
+        private const string KEY_ERROR = "Error";
+        private const string KEY_TOAST = "Toast";
+        public AdminProfileController(ComputerDeviceDataContext context, IUserLoggedService userLoggedService)
         {
+            _context = context;
             _userLoggedService = userLoggedService;
         }
 
@@ -25,26 +32,55 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             return View();
         }
         /// <summary>
-        ///Hàm này dùng để đổi mật khẩu tài khoản quản trị
+        /// Hàm này dùng để đổi mật khẩu tài khoản quản trị, nhân viên
         /// </summary>
-        /// <param name="id">id tài khoản cần đổi</param>
-        /// <param name="currentPassword">mật khẩu hiện tại</param>
-        /// <param name="newPassword">mật khẩu mới</param>
-        /// <param name="confirmNewPassword">xác nhận mật khẩu mới</param>
-        /// <returns>giao diện trang index</returns>
+        /// <param name="dto">thông tin mật khẩu cần đổi</param>
+        /// <returns></returns>
         [HttpPost]
-        [Route("api/adminprofile/changepassword/{id}&{currentPassword}&{newPassword}")]
-        public IActionResult ChangePassword(string id, string currentPassword, string newPassword)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDTO dto)
         {
-            string passhass = HassPass.HassPassSHA512(currentPassword);
-            var account = _context.Accounts.FirstOrDefault(d => d.UserId.Equals(id) && d.PasswordHash.Equals(passhass));
-            if (account != null)
+            ClearAlerts();
+            try
             {
-                account.PasswordHash = HassPass.HassPassSHA512(newPassword);
-                _context.SaveChanges();
-                return Json(new { success = true, message = "Đổi mật khẩu thành công" });
+                if (!ModelState.IsValid)
+                {
+                    TempData["Error"] = "Dữ liệu không hợp lệ.";
+                    return RedirectToAction(nameof(Index));
+                }
+                dto.CurrentPassword = dto.CurrentPassword?.Trim() ?? string.Empty;
+                dto.NewPassword = dto.NewPassword?.Trim() ?? string.Empty;
+                dto.ConfirmPassword = dto.ConfirmPassword?.Trim() ?? string.Empty;
+
+                var userLogged = _userLoggedService.GetUserLogged();
+                var account = await _context.Accounts.FindAsync(userLogged.UserId);
+                if (account == null)
+                {
+                    TempData["Error"] = "Không tìm thấy tài khoản";
+                    return RedirectToAction(nameof(Index));
+                }
+                var currentHash = HassPass.HassPassSHA512(dto.CurrentPassword);
+                if (!string.Equals(account.PasswordHash, currentHash, StringComparison.Ordinal))
+                {
+                    TempData["Error"] = "Mật khẩu hiện tại không đúng.";
+                    return RedirectToAction(nameof(Index));
+                }
+                if (string.Equals(dto.CurrentPassword, dto.NewPassword, StringComparison.Ordinal))
+                {
+                    TempData["Error"] = "Mật khẩu mới phải khác mật khẩu hiện tại.";
+                    return RedirectToAction(nameof(Index));
+                }
+                account.PasswordHash = HassPass.HassPassSHA512(dto.NewPassword);
+                await _context.SaveChangesAsync();
+
+                TempData["Toast"] = "Đổi mật khẩu thành công.";
+                return RedirectToAction(nameof(Index));
             }
-            return Json(new { success = false, message = "Đổi mật khẩu thất bại" });
+            catch
+            {
+                TempData["Error"] = "Xin vui lòng thử lại sau !";
+                return RedirectToAction(nameof(Index));
+            }
         }
         /// <summary>
         /// Hàm này dùng để thay đổi thông tin tài khoản
@@ -53,33 +89,64 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// <returns>View của index</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ChangeInformation(Account acc)
+        public async Task<IActionResult>  ChangeInformation(ChangeInfoDTO acc)
         {
-            var account = _context.Accounts.Find(acc.UserId);
-            if (account != null)
+            ClearAlerts();
+            try
             {
-                account.FirstName = acc.FirstName;
-                account.LastName = acc.LastName;
-                account.DeliverAddress = acc.DeliverAddress;
-                account.Phone = acc.Phone;
-                account.Gender = acc.Gender;    
-                _context.SaveChanges();
+                if (!ModelState.IsValid)
+                {
+                    TempData["Error"] = "Dữ liệu không hợp lệ.";
+                    return RedirectToAction(nameof(Index));
+                }
+                var userLogged = _userLoggedService.GetUserLogged();
+                var account =await _context.Accounts.FindAsync(userLogged.UserId);
+                if (account == null)
+                {
+                    TempData["Error"] = "Không tìm thấy tài khoản.";
+                    return RedirectToAction(nameof(Index));
+                }
+                account.FirstName = acc.FirstName?.Trim();
+                account.LastName = acc.LastName?.Trim();
+                account.Phone = acc.Phone?.Trim();
+                account.DeliverAddress = acc.DeliverAddress?.Trim();
+                account.Gender = acc.Gender;
+                await _context.SaveChangesAsync();
+
                 UpdateInterface(account);
+                TempData["Toast"] = "Lưu thông tin thành công.";
+                return RedirectToAction(nameof(Index));
             }
-            return Redirect("Index");
+            catch
+            {
+                TempData["Error"] = "Xin vui lòng thử lại sau !";
+                return RedirectToAction(nameof(Index));
+            }
         }
         /// <summary>
         /// Hàm này dùng để cập nhật lại giao diện. Nó cập như các thông tin của tài khoản ở trong session (phiên đăng nhập)
         /// </summary>
-        /// <param name="acc">là tài khoản cần cập nhật lại giao diện</param>
-        private void UpdateInterface(Account acc)
+        /// <param name="changed">là tài khoản cần cập nhật lại giao diện</param>
+        private void UpdateInterface(Account? changed)
         {
-            if (acc != null)
+            if (changed != null)
             {
-                _userLoggedService.SetUserLogged(acc);
+                _userLoggedService.SetUserLogged(changed);
             }
-            ViewData["AccountInformation"] = _userLoggedService.GetUserLogged(); 
-            ViewBag.GroupName = _context.GroupAccounts.Where(d => d.GroupId.Equals(_userLoggedService.GetUserLogged().GroupId)).Select(d=>d.GroupName).FirstOrDefault();
+            var curr = _userLoggedService.GetUserLogged();
+            ViewData["AccountInformation"] = curr;
+            if (curr != null)
+            {
+                ViewBag.GroupName = _context.GroupAccounts
+                    .Where(g => g.GroupId == curr.GroupId)
+                    .Select(g => g.GroupName)
+                    .FirstOrDefault();
+            }
+        }
+        private void ClearAlerts()
+        {
+            TempData.Remove(KEY_ERROR);
+            TempData.Remove(KEY_TOAST);
         }
     }
 }

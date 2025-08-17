@@ -76,6 +76,8 @@
   <ItemGroup>
     <Folder Include="Areas\PrivateSite\Data\" />
     <Folder Include="Areas\PrivateSite\Models\" />
+    <Folder Include="DTOs\Articles\" />
+    <Folder Include="DTOs\Products\" />
     <Folder Include="wwwroot\images\slide\" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cl6zSydSx+0ur2v7xqSKLpSdbttEbG+ev77jEHG4EC0=",
+  "Hash": "eyRLJwE4clYuXImCwNI4wmuTzFLjhYdXnfWIiqBZHEk=",
   "Source": "ComputerDeviceShopping",
   "BasePath": "_content/ComputerDeviceShopping",
   "Mode": "Default",
@@ -644,6 +644,25 @@
       "OriginalItemSpec": "wwwroot\\images\\articles\\3bc2dae1-9dc5-4a76-9045-4996c6878c7f.png"
     },
     {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\3e6134ed-ca38-4fe6-bd12-1d6cca6a13b8.jpeg",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/articles/3e6134ed-ca38-4fe6-bd12-1d6cca6a13b8.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\articles\\3e6134ed-ca38-4fe6-bd12-1d6cca6a13b8.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\4b236235-1423-4b92-815c-2166f0e0b1c0.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -1022,6 +1041,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\articles\\be067bd2-f705-4275-9538-2cf3c91d9a9b.png"
+    },
+    {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\cd305e0e-34e6-4dac-a0d2-4df126ea8f9b.jpg",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/articles/cd305e0e-34e6-4dac-a0d2-4df126ea8f9b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\articles\\cd305e0e-34e6-4dac-a0d2-4df126ea8f9b.jpg"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\articles\\d3614e29-14df-4d41-8e6f-81a95066468d.png",
@@ -2278,6 +2316,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\02ff0d15-bc25-496b-83fa-e73e987cc22f.png"
     },
     {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\03da279d-5c47-495b-84c3-be1381582f13.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/03da279d-5c47-495b-84c3-be1381582f13.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\03da279d-5c47-495b-84c3-be1381582f13.png"
+    },
+    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\04a10933-d09f-4fbf-b448-155c5583ebb3.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -2297,6 +2354,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\04a10933-d09f-4fbf-b448-155c5583ebb3.png"
     },
     {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\08026bc2-e1d0-4698-a0c9-28ed6b5bdb2e.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/08026bc2-e1d0-4698-a0c9-28ed6b5bdb2e.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\08026bc2-e1d0-4698-a0c9-28ed6b5bdb2e.png"
+    },
+    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\08865a5d-1506-4746-b835-67e74eceda36.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -2314,6 +2390,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\08865a5d-1506-4746-b835-67e74eceda36.png"
+    },
+    {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\0e74483b-fc4f-4203-a76d-904529f19b16.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/0e74483b-fc4f-4203-a76d-904529f19b16.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\0e74483b-fc4f-4203-a76d-904529f19b16.png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\0e9f36ff-573d-4e9a-8112-fd0cd9902985.png",
@@ -2544,6 +2639,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\19768984-a6aa-4caf-b025-90de5645b5ad.png"
     },
     {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\2139dc62-c967-4105-b776-f94ed74ba47e.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/2139dc62-c967-4105-b776-f94ed74ba47e.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\2139dc62-c967-4105-b776-f94ed74ba47e.png"
+    },
+    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\215bb862-f4d5-4593-a6b1-1a2820a7e4b3.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -2580,25 +2694,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\21d6dad4-2837-419c-ae97-bf6af33358a9.png"
-    },
-    {
-      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\2b760614-f6d5-4766-92d3-aedfa2fc6838.png",
-      "SourceId": "ComputerDeviceShopping",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
-      "BasePath": "_content/ComputerDeviceShopping",
-      "RelativePath": "images/products/2b760614-f6d5-4766-92d3-aedfa2fc6838.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\2b760614-f6d5-4766-92d3-aedfa2fc6838.png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\2cc2ba12-f8b3-448c-abb1-cfa164e69734.png",
@@ -2943,25 +3038,6 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\53450a9a-b0d1-475b-a1d6-67a66d97cc0d.webp"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\55c9e4a3-5562-45a7-99ad-279b5047f15f.png",
-      "SourceId": "ComputerDeviceShopping",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
-      "BasePath": "_content/ComputerDeviceShopping",
-      "RelativePath": "images/products/55c9e4a3-5562-45a7-99ad-279b5047f15f.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\55c9e4a3-5562-45a7-99ad-279b5047f15f.png"
-    },
-    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\588f2428-9bd0-45c3-9e55-9f1f7543cdfb.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -3019,12 +3095,12 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\5980d873-729f-4baa-bce8-49158680b6a1.png"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\5d1ae6b7-e9ae-4a6e-ac79-87fd14bed802.png",
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\5d922e23-cfec-4f4f-85e8-9d2f69ea7955.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
       "BasePath": "_content/ComputerDeviceShopping",
-      "RelativePath": "images/products/5d1ae6b7-e9ae-4a6e-ac79-87fd14bed802.png",
+      "RelativePath": "images/products/5d922e23-cfec-4f4f-85e8-9d2f69ea7955.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -3035,7 +3111,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\5d1ae6b7-e9ae-4a6e-ac79-87fd14bed802.png"
+      "OriginalItemSpec": "wwwroot\\images\\products\\5d922e23-cfec-4f4f-85e8-9d2f69ea7955.png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\5f9f5356-1977-4eaf-812c-5c820f79d823.png",
@@ -3152,6 +3228,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\659c5b8f-36b7-4b4f-89dd-2b787ba605b1.png"
     },
     {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\681a0e23-fe5e-4689-8e28-be78a9ed8efa.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/681a0e23-fe5e-4689-8e28-be78a9ed8efa.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\681a0e23-fe5e-4689-8e28-be78a9ed8efa.png"
+    },
+    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\69a87e2d-71bc-4373-8ba3-4f070fed322a.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -3226,6 +3321,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\71688950-35e3-416b-b234-4155f4e64db3.png"
+    },
+    {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\72090595-66d4-4ef0-9054-8871c8c64fcb.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/72090595-66d4-4ef0-9054-8871c8c64fcb.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\72090595-66d4-4ef0-9054-8871c8c64fcb.png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\7b69a924-dff2-45ad-aa5d-4133862b690d.png",
@@ -3342,6 +3456,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\855921ce-483b-4005-9cd5-322440685cbc.webp"
     },
     {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\85f1975e-a9e2-4df0-9595-40a716c4ac7a.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/85f1975e-a9e2-4df0-9595-40a716c4ac7a.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\85f1975e-a9e2-4df0-9595-40a716c4ac7a.png"
+    },
+    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\8674a8b1-16ba-4587-90cd-8241e68c78b9.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -3378,6 +3511,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\87064931-6137-4f65-a8a9-61ddd4f360e8.png"
+    },
+    {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\87e6750a-77b5-4db0-aabf-fc2c401ff329.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/87e6750a-77b5-4db0-aabf-fc2c401ff329.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\87e6750a-77b5-4db0-aabf-fc2c401ff329.png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\88b52906-d068-47aa-b232-d18b1ab77aaa.png",
@@ -3456,6 +3608,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\9a8f602a-8043-4c4a-ad33-bfab894e40a3.webp"
     },
     {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\9d785783-7bca-4fc3-9555-201664d56f2b.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/products/9d785783-7bca-4fc3-9555-201664d56f2b.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\9d785783-7bca-4fc3-9555-201664d56f2b.png"
+    },
+    {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\9e51b84b-b5d0-42eb-bb60-27cbe92e7b6c.png",
       "SourceId": "ComputerDeviceShopping",
       "SourceType": "Discovered",
@@ -3473,25 +3644,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\9e51b84b-b5d0-42eb-bb60-27cbe92e7b6c.png"
-    },
-    {
-      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\ad2852f2-5263-4ede-895b-c362ae625a87.png",
-      "SourceId": "ComputerDeviceShopping",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
-      "BasePath": "_content/ComputerDeviceShopping",
-      "RelativePath": "images/products/ad2852f2-5263-4ede-895b-c362ae625a87.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\ad2852f2-5263-4ede-895b-c362ae625a87.png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\products\\b33e1e88-cf7f-46b0-91c7-659e7df382b5.png",
@@ -4081,6 +4233,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\slide\\5f65d3de-fd17-4823-88a5-df530b33269a.png"
+    },
+    {
+      "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\images\\slide\\cd3fcfa9-acb4-467f-b2e5-281c31fc33ef.png",
+      "SourceId": "ComputerDeviceShopping",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\",
+      "BasePath": "_content/ComputerDeviceShopping",
+      "RelativePath": "images/slide/cd3fcfa9-acb4-467f-b2e5-281c31fc33ef.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\slide\\cd3fcfa9-acb4-467f-b2e5-281c31fc33ef.png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\source\\repos\\ComputerDeviceShopping\\ComputerDeviceShopping\\wwwroot\\js\\Common.js",

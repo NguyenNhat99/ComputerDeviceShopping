@@ -2,7 +2,7 @@
 @using ComputerDeviceShopping.Common;
 @{
     ViewData["Title"] = "Danh sách bài viết";
-    var articles = ViewData["Articles"] as List<Article>;
+    var articles = ViewData["Articles"]  as IEnumerable<Article>;
     string notification = ViewBag.updateItem;
 }
 <div class="container-fluid">
@@ -86,7 +86,7 @@
                             nextPage = ViewBag.NoOfPages;
                         }
                     }
-                    @if (articles.Count > 0)
+                    @if (articles.Any())
                     {
                         <ul class="pagination pagination-sm">
                             <li class="page-item"><a class="page-link" href="@Url.Action("Index","Articles",new {page=prevPage})">&laquo;</a></li>

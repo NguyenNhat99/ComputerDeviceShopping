@@ -9,27 +9,26 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
     [Area("PrivateSite")]
     [CustomAuthentication]
     [CustomAuthorize("quản trị")]
-
-
     public class ManagementAccountController : Controller
     {
-        private static ComputerDeviceDataContext _context = new ComputerDeviceDataContext();
-        private static IEmailSender _emailSender;
+        private readonly ComputerDeviceDataContext _context;
+        private readonly IEmailSender _emailSender;
         private static List<string> gmailList = new List<string>();
-        public ManagementAccountController(IEmailSender emailSender)
+        public ManagementAccountController(ComputerDeviceDataContext context,IEmailSender emailSender)
         {
             _emailSender = emailSender;
+            _context = context;
         }
         [HttpPost]
         [Route("api/managementaccount/sendnotification/{checkedAccounts}")]
-        public IActionResult SendNotifycation(string checkedAccounts)
+        public async Task<IActionResult> SendNotifycation(string checkedAccounts)
         {
             var emailList = new List<string>();
             var checkedAccounts1 = checkedAccounts.Split(',');
 
             foreach (var idAccount in checkedAccounts1)
             {
-                var account = _context.Accounts.Find(idAccount);
+                var account =await _context.Accounts.FindAsync(idAccount);
                 if (account != null)
                     emailList.Add(account.Email);
             }
@@ -53,9 +52,9 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
             catch (Exception ex) { }
             return RedirectToAction("Index", "ManagementAccount");
         }
-        public IActionResult Index(int page = 1, string name = "")
+        public async Task<IActionResult> Index(int page = 1, string name = "")
         {
-            paginition(page, name);
+            await paginition(page, name);
             return View();
         }
         /// <summary>
@@ -65,13 +64,13 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/managementaccount/active/{id}")]
-        public IActionResult Active(string id)
+        public async Task<IActionResult> Active(string id)
         {
-            var account = _context.Accounts.Find(id);
+            var account =await _context.Accounts.FindAsync(id);
             if (account != null)
             {
                 account.UserStatus = !account.UserStatus;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Cập nhật thành công" });
             }
             return Json(new { success = false, message = "Cập nhật thất bại" });
@@ -83,19 +82,19 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/managementaccount/multiactive/{idUserList}")]
-        public IActionResult MultiActive(string idUserList)
+        public async Task<IActionResult> MultiActive(string idUserList)
         {
             string[] idList = idUserList.Split(',');
             if (idList.Length > 0) 
             {
                 foreach(var id in idList)
                 {
-                    var account = _context.Accounts.Find(id);
+                    var account =await _context.Accounts.FindAsync(id);
                     if (account != null)
                         if (account.UserStatus == false)
                             account.UserStatus = true;
                 }
-                _context.SaveChanges(); 
+                await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Cập nhật thành công" });
             }
             return Json(new { success = false, message = "Cập nhật thất bại" });
@@ -107,32 +106,32 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/managementaccount/multiblock/{idUserList}")]
-        public IActionResult MultiBlock(string idUserList)
+        public async Task<IActionResult> MultiBlock(string idUserList)
         {
             string[] idList = idUserList.Split(',');
             if (idList.Length > 0)
             {
                 foreach (var id in idList)
                 {
-                    var account = _context.Accounts.Find(id);
+                    var account =await _context.Accounts.FindAsync(id);
                     if (account != null)
                         if (account.UserStatus == true)
                             account.UserStatus = false;
                 }
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Cập nhật thành công" });
             }
             return Json(new { success = false, message = "Cập nhật thất bại" });
         }
         [HttpPost]
         [Route("api/managementaccount/changepermisstion/{id}&{newPermisstion}")]
-        public IActionResult ChangePermisstion(string id, int newPermisstion) 
+        public async Task<IActionResult> ChangePermisstion(string id, int newPermisstion) 
         {
-            var account = _context.Accounts.Find(id);
+            var account = await _context.Accounts.FindAsync(id);
             if (account != null)
             {
                 account.GroupId = newPermisstion;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Cập nhật thành công" });
             }
           
@@ -158,14 +157,14 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         [Route("api/managementaccount/resetpassword/{id}")]
         public async Task<IActionResult> ResetPassword(string id)
         {
-            var account = _context.Accounts.Find(id);
+            var account =await _context.Accounts.FindAsync(id);
             if (account != null)
             {
                 string randomPass = CommonTools.RandomCharacters(8);
                 string newPassHash = HassPass.HassPassSHA512(randomPass);
                 account.PasswordHash = newPassHash;
                 await _emailSender.SendEmailAsync(account.Email, "Mật khẩu mới", "Mật khẩu của bạn là: " + randomPass);
-                _context.SaveChanges();
+                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Reset mật khẩu thành công" });
             }
             return Json(new { success = false, message = "Reset mật khẩu thất bại" });
@@ -216,7 +215,7 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
                 _context.ActivateCodes.RemoveRange(activateCodes);
 
                 _context.Accounts.Remove(account);
-                 _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Xóa thành công" });
         }
             return Json(new { success = false, message = "Xóa thất bại" });
@@ -226,9 +225,9 @@ namespace ComputerDeviceShopping.Areas.PrivateSite.Controllers
         /// </summary>
         /// <param name="page">trang</param>
         /// <param name="name">tìm kiếm bằng mã voucher</param>
-        private void paginition(int page = 1, string name = "")
+        private async Task paginition(int page = 1, string name = "")
         {
-            List<Account> accounts = _context.Accounts.Where(d => (String.IsNullOrEmpty(name) || d.Username.Contains(name) || d.UserId.Equals(name))).ToList();
+            List<Account> accounts = await _context.Accounts.Include(d => d.Group).Where(d => (String.IsNullOrEmpty(name) || d.Username.Contains(name) || d.UserId.Equals(name)) && !(d.Group.GroupName.Equals("quản trị"))).ToListAsync();
             var pagVM = CommonTools.Paginition(accounts, page, 10);
             ViewBag.Page = pagVM.page;
             ViewBag.NoOfPages = pagVM.noOfPages;
