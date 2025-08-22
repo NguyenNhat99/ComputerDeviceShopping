@@ -1,17 +1,17 @@
 # Website bán thiết bị điện tử
 Website bán thiết bị điện tử được xây dựng bằng **Microsoft ASP.NET Core MVC**. Đây là website thương mại điện tử mô phỏng việc bán các thiết bị máy tính với đầy đủ chức năng.  
 
-## II. công nghệ sử dụng
+## I. công nghệ sử dụng
 - **Backend**: ASP.NET Core MVC, SignalR, Session & Cookie Authentication  
 - **Frontend**: Razor View Engine, HTML, CSS, JavaScript, AJAX, Bootstrap
 - **Database**: Microsoft SQL Server, Entity Framework Core
 - **Dịch vụ & Tích hợp**: MailKit (Email Sender), VNPay Payment Gateway  
 - **Khác**: LINQ, TempData/ViewBag/ViewData
   
-## III. Cơ sở dữ liệu
+## II. Cơ sở dữ liệu
 <img width="1252" height="850" alt="database1" src="https://github.com/user-attachments/assets/c10bb614-0c1b-4150-8714-1b4678419cda" />
   
-## IV. Các trang sản phẩm
+## III. Các trang sản phẩm
 
 ### 1. Người dùng
 
